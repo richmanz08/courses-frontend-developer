@@ -12,7 +12,7 @@ interface IUserData {
   phone?: string; // optional
   role: UserRole; // UserRole.ADMIN, UserRole.USER
   status: Status; // 'active', 'inactive', 'pending'
-  address: IAddress; // optional
+  address: IAddress;
   loginLog: LoginLog[];
 }
 
@@ -22,7 +22,7 @@ enum UserRole {
 }
 
 interface LoginLog {
-  date: string; // Changed from Date to string to avoid hydration issues
+  date: string;
   ipAddress: string;
 }
 
