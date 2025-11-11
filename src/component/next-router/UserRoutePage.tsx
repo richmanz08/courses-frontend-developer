@@ -31,7 +31,7 @@ export const UserRoutePageExample = ({ userID }: UserRoutePageExampleProps) => {
           body={function ({ userID }) {
             return (
               <Button
-                label="View detail"
+                label="Try push"
                 onClick={() => {
                   router.push(`/next-router/user/${userID}`);
                 }}
@@ -46,7 +46,7 @@ export const UserRoutePageExample = ({ userID }: UserRoutePageExampleProps) => {
             return (
               <Button
                 severity="warning"
-                label="View detail"
+                label="Try replace"
                 onClick={() => {
                   router.replace(`/next-router/user/${userID}`);
                 }}

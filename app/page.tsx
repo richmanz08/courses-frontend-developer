@@ -15,8 +15,8 @@ export default function Home() {
       color: "bg-blue-500",
     },
     {
-      title: "Next.js Router",
-      description: "Master Next.js App Router and navigation patterns",
+      title: "Next Router",
+      description: "Master Next App Router and navigation patterns",
       icon: "🚀",
       path: "/next-router",
       color: "bg-green-500",
