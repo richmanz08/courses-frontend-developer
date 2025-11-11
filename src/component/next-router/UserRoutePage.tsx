@@ -54,6 +54,21 @@ export const UserRoutePageExample = ({ userID }: UserRoutePageExampleProps) => {
             );
           }}
         />
+        <Column
+          field="userID"
+          header="Go to Detail Page"
+          body={function ({ userID }) {
+            return (
+              <Button
+                severity="info"
+                label="Go to Detail"
+                onClick={() => {
+                  router.push(`/next-router/user/${userID}/detail`);
+                }}
+              />
+            );
+          }}
+        />
       </DataTable>
       <Accordion>
         <AccordionTab header="Content router replace 🐳">

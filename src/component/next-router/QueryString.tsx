@@ -256,9 +256,6 @@ export const QueryStringExampleComponent = ({
           // Create new URLSearchParams to preserve existing query parameters
           const params = new URLSearchParams(searchParams.toString());
           params.set("tab", tabKey);
-          // Reset to page 1 when changing tabs
-          params.set("page", "1");
-
           router.replace(`?${params.toString()}`);
         }}
       >

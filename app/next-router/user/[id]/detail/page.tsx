@@ -22,8 +22,11 @@ export default function Page() {
       command: () => router.push("/next-router"),
     },
     {
+      label: `router function push vs replace`,
+      command: () => router.push(`/next-router/user/${userID}`),
+    },
+    {
       label: `Query String Example`,
-      command: () => router.push(`/next-router/user/${userID}/detail`),
     },
   ];
 
