@@ -1,5 +1,6 @@
 "use client";
-import { UserRoutePageExample } from "@/src/component/next-router/UserRoutePage";
+
+import { QueryStringExampleComponent } from "@/src/component/next-router/QueryString";
 import { useParams } from "next/navigation";
 
 export default function Page() {
@@ -12,7 +13,7 @@ export default function Page() {
 
   return (
     <div>
-      <UserRoutePageExample userID={userID} />
+      <QueryStringExampleComponent userID={userID} />
     </div>
   );
 }
