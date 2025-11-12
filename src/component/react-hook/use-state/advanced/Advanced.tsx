@@ -21,13 +21,6 @@ export const AdvancedExample = () => {
   // 8. Functional Updates (Prevent Stale State)
   const [counter, setCounter] = useState(0);
 
-  // 9. Lazy Initial State (Expensive Calculation)
-  const [expensiveValue] = useState(() => {
-    console.log("🔥 Expensive calculation running...");
-    // Simulate expensive calculation
-    return Array.from({ length: 1000 }, (_, i) => i).reduce((a, b) => a + b, 0);
-  });
-
   // Todo handlers
   const handleAddTodo = () => {
     if (todoInput.trim()) {
@@ -165,28 +158,6 @@ setCounter(counter + 1);
 
 // ✅ Correct - always uses latest state
 setCounter(prev => prev + 1);`}</code>
-        </pre>
-      </div>
-
-      {/* 9. Lazy Initialization */}
-      <div className="p-4 bg-gray-50 rounded-lg">
-        <h3 className="font-semibold text-gray-800 mb-3">
-          9️⃣ Lazy Initial State (Performance)
-        </h3>
-        <div className="bg-green-100 border-l-4 border-green-500 p-4 rounded">
-          <p className="text-green-800">
-            <strong>Expensive Value:</strong> {expensiveValue.toLocaleString()}
-          </p>
-          <p className="text-sm text-green-700 mt-2">
-            This value was calculated only once on mount!
-          </p>
-        </div>
-        <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-          <code>{`// ❌ Runs on every render
-const [value] = useState(expensiveCalculation());
-
-// ✅ Runs only once
-const [value] = useState(() => expensiveCalculation());`}</code>
         </pre>
       </div>
     </Card>
