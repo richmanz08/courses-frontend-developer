@@ -21,6 +21,13 @@ export default function Home() {
       path: "/next-router",
       color: "bg-green-500",
     },
+    {
+      title: "React Hooks",
+      description: "Understand React Hooks with hands-on demonstrations",
+      icon: "⚛️",
+      path: "/react-hook",
+      color: "bg-red-500",
+    },
   ];
 
   return (
@@ -76,7 +83,7 @@ export default function Home() {
         </div>
 
         {/* Features */}
-        <div className="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+        {/* <div className="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
             What You&apos;ll Learn
           </h2>
@@ -109,7 +116,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   );
