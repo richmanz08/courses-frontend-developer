@@ -1,7 +1,9 @@
 "use client";
+import { UseEffectHookExample } from "@/src/component/react-hook/use-effect/UseEffect";
 import { UseStateHookExample } from "@/src/component/react-hook/use-state/UseState";
 import { useRouter } from "next/navigation";
 import { BreadCrumb } from "primereact/breadcrumb";
+import { TabView, TabPanel } from "primereact/tabview";
 
 export default function Page() {
   const router = useRouter();
@@ -25,7 +27,18 @@ export default function Page() {
   return (
     <div>
       <BreadCrumb model={items} home={home} className="my-4" />
-      <UseStateHookExample />
+
+      <div className="card">
+        <TabView>
+          <TabPanel header="useState">
+            <UseStateHookExample />
+          </TabPanel>
+
+          <TabPanel header="useEffect">
+            <UseEffectHookExample />
+          </TabPanel>
+        </TabView>
+      </div>
     </div>
   );
 }
