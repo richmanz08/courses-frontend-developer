@@ -1,5 +1,7 @@
 "use client";
 
+import { TerminalUI } from "../ui/TerminalUI";
+
 // Base Interfaces
 interface PersonData {
   id: number;
@@ -106,269 +108,622 @@ export const InheritanceExampleComponent = () => {
 
   return (
     <div className="p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-indigo-800 mb-2">
+          <h1 className="text-3xl font-bold text-slate-800 mb-2">
             🏗️ Interface Inheritance Examples
           </h1>
           <p className="text-gray-600">
             การสืบทอด Interface ใน TypeScript - Single & Multiple Inheritance
           </p>
         </div>
+      </div>
 
-        {/* Inheritance Explanation */}
-        <div className="bg-white rounded-lg p-6 mb-6 border-l-4 border-indigo-500">
-          <h2 className="text-xl font-semibold text-gray-800 mb-3">
-            💡 Interface Inheritance คืออะไร?
-          </h2>
-          <p className="text-gray-600 mb-2">
-            การใช้{" "}
-            <code className="bg-gray-100 px-2 py-1 rounded">extends</code>
-            เพื่อสืบทอดคุณสมบัติจาก interface อื่น
-          </p>
-          <p className="text-gray-600">
-            สามารถสืบทอดจากหลาย interface พร้อมกันได้ (Multiple Inheritance)
-          </p>
+      <TerminalUI fileName="Inheritance.tsx" name="TypeScript Inheritance">
+        <div className="mb-6">
+          <h3 className="text-green-400 font-bold mb-3">
+            📝 Base Interface Definitions:
+          </h3>
+          <div className="text-sm space-y-4">
+            {/* PersonData */}
+            <div>
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">PersonData</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">id</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">number</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">name</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">email</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">phone</span>
+                  <span className="text-yellow-400">?</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* CarData */}
+            <div>
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">CarData</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">brand</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">model</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">year</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">number</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">color</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* EmploymentData */}
+            <div>
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">EmploymentData</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">company</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">position</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">salary</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">number</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">startDate</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* InsurancePolicy */}
+            <div>
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">InsurancePolicy</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">policyNumber</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">coverageAmount</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">number</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">expiryDate</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">provider</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-6">
-          {/* Single Inheritance */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="bg-green-600 text-white p-4">
-              <h3 className="text-lg font-semibold">
-                👤 Single Inheritance: Employee extends PersonData
-              </h3>
-              <p className="text-green-100 text-sm">
-                สืบทอดจาก interface เดียว
-              </p>
-            </div>
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-800">
-                    Employee Info:
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Name:</span>
-                      <span className="font-medium text-gray-500">
-                        {employee.name}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Email:</span>
-                      <span className="font-medium text-gray-500">
-                        {employee.email}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Employee ID:</span>
-                      <span className="font-medium text-gray-500">
-                        {employee.employeeId}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Department:</span>
-                      <span className="font-medium text-gray-500">
-                        {employee.department}
-                      </span>
-                    </div>
+        <div className="border-t border-gray-700 pt-4 mb-6">
+          <div className="bg-blue-900/30 border border-blue-500/30 rounded-lg p-4 mb-4">
+            <h4 className="text-blue-300 font-bold mb-2">
+              💡 Interface Inheritance คืออะไร?
+            </h4>
+            <p className="text-gray-300 text-sm mb-2">
+              การใช้ <span className="text-blue-400">extends</span>{" "}
+              เพื่อสืบทอดคุณสมบัติจาก interface อื่น
+            </p>
+            <p className="text-gray-300 text-sm">
+              สามารถสืบทอดจากหลาย interface พร้อมกันได้ (Multiple Inheritance)
+            </p>
+          </div>
+
+          <h3 className="text-green-400 font-bold mb-3">
+            🎯 Inheritance Examples:
+          </h3>
+          <div className="text-sm space-y-6">
+            {/* Example 1: Single Inheritance */}
+            <div>
+              <div className="text-emerald-400 font-semibold mb-2">
+                1️⃣ Single Inheritance
+              </div>
+              <div className="mb-2">
+                <span className="text-blue-400">interface</span>{" "}
+                <span className="text-teal-400">Employee</span>{" "}
+                <span className="text-blue-400">extends</span>{" "}
+                <span className="text-teal-400">PersonData</span>{" "}
+                <span className="text-gray-400">{"{"}</span>
+                <div className="pl-4">
+                  <div>
+                    <span className="text-blue-300">employeeId</span>
+                    <span className="text-gray-400">:</span>{" "}
+                    <span className="text-teal-300">string</span>
+                    <span className="text-gray-400">;</span>
+                  </div>
+                  <div>
+                    <span className="text-blue-300">department</span>
+                    <span className="text-gray-400">:</span>{" "}
+                    <span className="text-teal-300">string</span>
+                    <span className="text-gray-400">;</span>
                   </div>
                 </div>
-                <div className="bg-green-50 rounded-lg p-4">
-                  <h5 className="font-medium text-green-800 mb-2">
-                    Interface Structure:
-                  </h5>
-                  <pre className="text-sm text-green-700">
-                    {`interface Employee extends PersonData {
-  employeeId: string;
-  department: string;
-}`}
-                  </pre>
+                <span className="text-gray-400">{"}"}</span>
+              </div>
+              <div className="text-gray-500 text-xs pl-4">
+                {"//"} สืบทอดคุณสมบัติจาก PersonData (id, name, email, phone)
+              </div>
+            </div>
+
+            {/* Example 2: Multiple Inheritance */}
+            <div>
+              <div className="text-orange-400 font-semibold mb-2">
+                2️⃣ Multiple Inheritance (3 Interfaces)
+              </div>
+              <div className="mb-2">
+                <span className="text-blue-400">interface</span>{" "}
+                <span className="text-teal-400">CarOwner</span>{" "}
+                <span className="text-blue-400">extends</span>{" "}
+                <span className="text-teal-400">PersonData</span>
+                <span className="text-gray-400">,</span>{" "}
+                <span className="text-teal-400">CarData</span>
+                <span className="text-gray-400">,</span>{" "}
+                <span className="text-teal-400">InsurancePolicy</span>{" "}
+                <span className="text-gray-400">{"{"}</span>
+                <div className="pl-4">
+                  <div>
+                    <span className="text-blue-300">licenseNumber</span>
+                    <span className="text-gray-400">:</span>{" "}
+                    <span className="text-teal-300">string</span>
+                    <span className="text-gray-400">;</span>
+                  </div>
+                </div>
+                <span className="text-gray-400">{"}"}</span>
+              </div>
+              <div className="text-gray-500 text-xs pl-4">
+                {"//"} สืบทอดจาก 3 interfaces พร้อมกัน
+              </div>
+            </div>
+
+            {/* Example 3: Complex Multiple Inheritance */}
+            <div>
+              <div className="text-purple-400 font-semibold mb-2">
+                3️⃣ Complex Multiple Inheritance (4 Interfaces)
+              </div>
+              <div className="mb-2">
+                <span className="text-blue-400">interface</span>{" "}
+                <span className="text-teal-400">ExecutiveEmployee</span>
+                <div className="pl-4">
+                  <span className="text-blue-400">extends</span>{" "}
+                  <span className="text-teal-400">PersonData</span>
+                  <span className="text-gray-400">,</span>
+                </div>
+                <div className="pl-12">
+                  <span className="text-teal-400">EmploymentData</span>
+                  <span className="text-gray-400">,</span>
+                </div>
+                <div className="pl-12">
+                  <span className="text-teal-400">CarData</span>
+                  <span className="text-gray-400">,</span>
+                </div>
+                <div className="pl-12">
+                  <span className="text-teal-400">InsurancePolicy</span>{" "}
+                  <span className="text-gray-400">{"{"}</span>
+                </div>
+                <div className="pl-4">
+                  <div>
+                    <span className="text-blue-300">executiveLevel</span>
+                    <span className="text-gray-400">:</span>{" "}
+                    <span className="text-orange-300">&quot;Junior&quot;</span>{" "}
+                    <span className="text-blue-400">|</span>{" "}
+                    <span className="text-orange-300">&quot;Senior&quot;</span>{" "}
+                    <span className="text-blue-400">|</span>{" "}
+                    <span className="text-orange-300">&quot;VP&quot;</span>{" "}
+                    <span className="text-blue-400">|</span>{" "}
+                    <span className="text-orange-300">&quot;CEO&quot;</span>
+                    <span className="text-gray-400">;</span>
+                  </div>
+                  <div>
+                    <span className="text-blue-300">benefits</span>
+                    <span className="text-gray-400">:</span>{" "}
+                    <span className="text-teal-300">string</span>
+                    <span className="text-gray-400">[];</span>
+                  </div>
+                </div>
+                <span className="text-gray-400">{"}"}</span>
+              </div>
+              <div className="text-gray-500 text-xs pl-4">
+                {"//"} สืบทอดจาก 4 interfaces + เพิ่มคุณสมบัติใหม่
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-700 pt-4">
+          <h3 className="text-cyan-400 font-bold mb-3">📦 Data Examples:</h3>
+
+          {/* Example 1: Employee */}
+          <div className="mb-6">
+            <div className="text-emerald-400 text-sm font-semibold mb-2">
+              👤 Example 1: Employee (Single Inheritance)
+            </div>
+            <div className="bg-gray-800/50 rounded p-4 border border-gray-600">
+              {/* PersonData (inherited) */}
+              <div className="mb-4 pb-4 border-b border-gray-700">
+                <div className="text-xs text-blue-400 font-semibold mb-2 flex items-center gap-2">
+                  <span className="bg-blue-500/20 px-2 py-1 rounded">
+                    📦 From PersonData
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <span className="text-gray-500">id:</span>{" "}
+                    <span className="text-white">{employee.id}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">name:</span>{" "}
+                    <span className="text-white">{employee.name}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">email:</span>{" "}
+                    <span className="text-white">{employee.email}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">phone:</span>{" "}
+                    <span className="text-white">{employee.phone}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Employee (own properties) */}
+              <div>
+                <div className="text-xs text-emerald-400 font-semibold mb-2 flex items-center gap-2">
+                  <span className="bg-emerald-500/20 px-2 py-1 rounded">
+                    ➕ Employee Properties
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <span className="text-gray-500">employeeId:</span>{" "}
+                    <span className="text-emerald-400 font-semibold">
+                      {employee.employeeId}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">department:</span>{" "}
+                    <span className="text-emerald-400 font-semibold">
+                      {employee.department}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Multiple Inheritance */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="bg-orange-600 text-white p-4">
-              <h3 className="text-lg font-semibold">
-                🚗 Multiple Inheritance: CarOwner extends PersonData, CarData,
-                InsurancePolicy
-              </h3>
-              <p className="text-orange-100 text-sm">สืบทอดจากหลาย interface</p>
+          {/* Example 2: CarOwner */}
+          <div className="mb-6">
+            <div className="text-orange-400 text-sm font-semibold mb-2">
+              🚗 Example 2: CarOwner (Multiple Inheritance - 3 Interfaces)
             </div>
-            <div className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                {/* Personal Info */}
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 text-gray-900 mb-3">
-                    👤 Personal Info
+            <div className="bg-gray-800/50 rounded p-4 border border-gray-600">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Personal Info - From PersonData */}
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded p-3">
+                  <h4 className="text-blue-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-blue-500/30 px-2 py-0.5 rounded">
+                      � PersonData
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Name:</strong> {carOwner.name}
+                      <span className="text-gray-500">id:</span>{" "}
+                      <span className="text-white">{carOwner.id}</span>
                     </div>
                     <div>
-                      <strong>Email:</strong> {carOwner.email}
+                      <span className="text-gray-500">name:</span>{" "}
+                      <span className="text-white">{carOwner.name}</span>
                     </div>
                     <div>
-                      <strong>License:</strong> {carOwner.licenseNumber}
+                      <span className="text-gray-500">email:</span>{" "}
+                      <span className="text-white">{carOwner.email}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Car Info */}
-                <div className="bg-green-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-3">
-                    🚗 Car Info
+                {/* Car Info - From CarData */}
+                <div className="bg-green-900/20 border border-green-500/30 rounded p-3">
+                  <h4 className="text-green-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-green-500/30 px-2 py-0.5 rounded">
+                      � CarData
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Brand:</strong> {carOwner.brand}
+                      <span className="text-gray-500">brand:</span>{" "}
+                      <span className="text-white">{carOwner.brand}</span>
                     </div>
                     <div>
-                      <strong>Model:</strong> {carOwner.model}
+                      <span className="text-gray-500">model:</span>{" "}
+                      <span className="text-white">{carOwner.model}</span>
                     </div>
                     <div>
-                      <strong>Year:</strong> {carOwner.year}
+                      <span className="text-gray-500">year:</span>{" "}
+                      <span className="text-white">{carOwner.year}</span>
                     </div>
                     <div>
-                      <strong>Color:</strong> {carOwner.color}
+                      <span className="text-gray-500">color:</span>{" "}
+                      <span className="text-white">{carOwner.color}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Insurance Info */}
-                <div className="bg-purple-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-3">
-                    🛡️ Insurance
+                {/* Insurance Info - From InsurancePolicy */}
+                <div className="bg-purple-900/20 border border-purple-500/30 rounded p-3">
+                  <h4 className="text-purple-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-purple-500/30 px-2 py-0.5 rounded">
+                      � InsurancePolicy
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Provider:</strong> {carOwner.provider}
+                      <span className="text-gray-500">policyNumber:</span>{" "}
+                      <span className="text-white">
+                        {carOwner.policyNumber}
+                      </span>
                     </div>
                     <div>
-                      <strong>Policy:</strong> {carOwner.policyNumber}
+                      <span className="text-gray-500">provider:</span>{" "}
+                      <span className="text-white">{carOwner.provider}</span>
                     </div>
                     <div>
-                      <strong>Coverage:</strong> $
-                      {carOwner.coverageAmount.toLocaleString()}
+                      <span className="text-gray-500">coverageAmount:</span>{" "}
+                      <span className="text-green-400">
+                        ${carOwner.coverageAmount.toLocaleString()}
+                      </span>
                     </div>
                     <div>
-                      <strong>Expires:</strong> {carOwner.expiryDate}
+                      <span className="text-gray-500">expiryDate:</span>{" "}
+                      <span className="text-white">{carOwner.expiryDate}</span>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Own properties */}
+              <div className="mt-3 pt-3 border-t border-gray-700">
+                <div className="text-xs text-orange-400 font-semibold mb-2 flex items-center gap-2">
+                  <span className="bg-orange-500/20 px-2 py-1 rounded">
+                    ➕ CarOwner Properties
+                  </span>
+                </div>
+                <div className="text-sm">
+                  <span className="text-gray-500">licenseNumber:</span>{" "}
+                  <span className="text-orange-400 font-semibold">
+                    {carOwner.licenseNumber}
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Complex Multiple Inheritance */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="bg-purple-600 text-white p-4">
-              <h3 className="text-lg font-semibold">
-                ⭐ Complex Multiple Inheritance: Executive Employee
-              </h3>
-              <p className="text-purple-100 text-sm">
-                สืบทอดจาก 4 interface พร้อมกัน
-              </p>
+          {/* Example 3: Executive */}
+          <div className="mb-4">
+            <div className="text-purple-400 text-sm font-semibold mb-2">
+              ⭐ Example 3: ExecutiveEmployee (Complex Multiple Inheritance - 4
+              Interfaces)
             </div>
-            <div className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
-                {/* Personal */}
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-3">
-                    👤 Personal
+            <div className="bg-gray-800/50 rounded p-4 border border-gray-600">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                {/* Personal - From PersonData */}
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded p-3">
+                  <h4 className="text-blue-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-blue-500/30 px-2 py-0.5 rounded text-[10px]">
+                      � PersonData
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Name:</strong> {executive.name}
+                      <span className="text-gray-500">id:</span>{" "}
+                      <span className="text-white">{executive.id}</span>
                     </div>
                     <div>
-                      <strong>Email:</strong> {executive.email}
+                      <span className="text-gray-500">name:</span>{" "}
+                      <span className="text-white">{executive.name}</span>
                     </div>
                     <div>
-                      <strong>Phone:</strong> {executive.phone}
+                      <span className="text-gray-500">email:</span>{" "}
+                      <span className="text-white text-[10px]">
+                        {executive.email}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">phone:</span>{" "}
+                      <span className="text-white">{executive.phone}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Employment */}
-                <div className="bg-green-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-3">
-                    💼 Employment
+                {/* Employment - From EmploymentData */}
+                <div className="bg-green-900/20 border border-green-500/30 rounded p-3">
+                  <h4 className="text-green-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-green-500/30 px-2 py-0.5 rounded text-[10px]">
+                      � EmploymentData
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Company:</strong> {executive.company}
+                      <span className="text-gray-500">company:</span>{" "}
+                      <span className="text-white text-[10px]">
+                        {executive.company}
+                      </span>
                     </div>
                     <div>
-                      <strong>Position:</strong> {executive.position}
+                      <span className="text-gray-500">position:</span>{" "}
+                      <span className="text-white text-[10px]">
+                        {executive.position}
+                      </span>
                     </div>
                     <div>
-                      <strong>Level:</strong> {executive.executiveLevel}
+                      <span className="text-gray-500">salary:</span>{" "}
+                      <span className="text-green-400">
+                        ${executive.salary.toLocaleString()}
+                      </span>
                     </div>
                     <div>
-                      <strong>Salary:</strong> $
-                      {executive.salary.toLocaleString()}
+                      <span className="text-gray-500">startDate:</span>{" "}
+                      <span className="text-white">{executive.startDate}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Car */}
-                <div className="bg-orange-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-3">
-                    🚗 Company Car
+                {/* Car - From CarData */}
+                <div className="bg-orange-900/20 border border-orange-500/30 rounded p-3">
+                  <h4 className="text-orange-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-orange-500/30 px-2 py-0.5 rounded text-[10px]">
+                      � CarData
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Brand:</strong> {executive.brand}
+                      <span className="text-gray-500">brand:</span>{" "}
+                      <span className="text-white">{executive.brand}</span>
                     </div>
                     <div>
-                      <strong>Model:</strong> {executive.model}
+                      <span className="text-gray-500">model:</span>{" "}
+                      <span className="text-white">{executive.model}</span>
                     </div>
                     <div>
-                      <strong>Year:</strong> {executive.year}
+                      <span className="text-gray-500">year:</span>{" "}
+                      <span className="text-white">{executive.year}</span>
                     </div>
                     <div>
-                      <strong>Color:</strong> {executive.color}
+                      <span className="text-gray-500">color:</span>{" "}
+                      <span className="text-white">{executive.color}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Insurance */}
-                <div className="bg-red-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-red-800 mb-3">
-                    🛡️ Insurance
+                {/* Insurance - From InsurancePolicy */}
+                <div className="bg-red-900/20 border border-red-500/30 rounded p-3">
+                  <h4 className="text-red-400 font-semibold text-xs mb-2 flex items-center gap-1">
+                    <span className="bg-red-500/30 px-2 py-0.5 rounded text-[10px]">
+                      � InsurancePolicy
+                    </span>
                   </h4>
-                  <div className="space-y-2 text-sm text-gray-500">
+                  <div className="space-y-1 text-xs">
                     <div>
-                      <strong>Provider:</strong> {executive.provider}
+                      <span className="text-gray-500">policyNumber:</span>{" "}
+                      <span className="text-white">
+                        {executive.policyNumber}
+                      </span>
                     </div>
                     <div>
-                      <strong>Policy:</strong> {executive.policyNumber}
+                      <span className="text-gray-500">provider:</span>{" "}
+                      <span className="text-white text-[10px]">
+                        {executive.provider}
+                      </span>
                     </div>
                     <div>
-                      <strong>Coverage:</strong> $
-                      {executive.coverageAmount.toLocaleString()}
+                      <span className="text-gray-500">coverageAmount:</span>{" "}
+                      <span className="text-green-400">
+                        ${executive.coverageAmount.toLocaleString()}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">expiryDate:</span>{" "}
+                      <span className="text-white">{executive.expiryDate}</span>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Own properties */}
+              <div className="mb-3 pb-3 border-b border-gray-700">
+                <div className="text-xs text-purple-400 font-semibold mb-2 flex items-center gap-2">
+                  <span className="bg-purple-500/20 px-2 py-1 rounded">
+                    ➕ ExecutiveEmployee Properties
+                  </span>
+                </div>
+                <div className="text-sm">
+                  <span className="text-gray-500">executiveLevel:</span>{" "}
+                  <span className="text-purple-400 font-semibold">
+                    {executive.executiveLevel}
+                  </span>
                 </div>
               </div>
 
               {/* Benefits */}
-              <div className="mt-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                <h4 className="font-semibold text-purple-800 mb-3">
-                  🎁 Executive Benefits
+              <div className="bg-purple-900/20 border border-purple-500/30 rounded p-3">
+                <h4 className="text-purple-400 font-semibold text-xs mb-2 flex items-center gap-2">
+                  <span className="bg-purple-500/30 px-2 py-0.5 rounded">
+                    🎁 benefits (string[])
+                  </span>
                 </h4>
-                <div className="flex flex-wrap gap-2 ">
+                <div className="flex flex-wrap gap-2">
                   {executive.benefits.map((benefit, index) => (
                     <span
                       key={index}
-                      className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                      className="bg-purple-500/20 border border-purple-500/40 text-purple-300 px-2 py-1 rounded text-xs"
                     >
                       {benefit}
                     </span>
@@ -378,7 +733,7 @@ export const InheritanceExampleComponent = () => {
             </div>
           </div>
         </div>
-      </div>
+      </TerminalUI>
     </div>
   );
 };
