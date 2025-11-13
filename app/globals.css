@@ -20,12 +20,16 @@
 }
 
 body {
-  background: var(--background);
+  background: #cbd5e1;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  height: fit-content;
 }
 
 .p-breadcrumb {
   background-color: transparent;
   border: unset;
+}
+.p-menuitem-text {
+  color: #344054;
 }
