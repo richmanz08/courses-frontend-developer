@@ -1,4 +1,5 @@
 "use client";
+import { TerminalUI } from "@/src/component/ui/TerminalUI";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
@@ -37,7 +38,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 ">
       <main className="container mx-auto px-6 py-12">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 w-full flex flex-col items-center">
           <div className="flex justify-center mb-6">
             <Image
               className="light:invert"
@@ -51,10 +52,26 @@ export default function Home() {
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             Frontend Developer Courses
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-4">
             Learn TypeScript and Next.js with interactive examples and practical
             implementations
           </p>
+
+          <div className="max-w-2xl">
+            <TerminalUI
+              fileName="npx-create-next-app.txt"
+              name="npx create-next-app"
+            >
+              <div className="text-sm pt-4 min-h-[100px]">
+                <span className="text-green-600 font-mono text-left w-full">
+                  wearecpmatch@MacBook-Pro-2 ~ %
+                </span>
+                <span className="text-pink-600 font-mono ml-4 text-left w-full">
+                  npx create-next-app@latest
+                </span>
+              </div>
+            </TerminalUI>
+          </div>
 
           {/* Why Button */}
           <div className="mt-6">
