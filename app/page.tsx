@@ -2,9 +2,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [showWhyModal, setShowWhyModal] = useState(false);
 
   const courses = [
     {
@@ -52,7 +55,196 @@ export default function Home() {
             Learn TypeScript and Next.js with interactive examples and practical
             implementations
           </p>
+
+          {/* Why Button */}
+          <div className="mt-6">
+            <Button
+              label="🤔 ทำไมต้องเป็น Next กับ React"
+              icon="pi pi-question-circle"
+              className="p-button-rounded p-button-info p-button-lg"
+              onClick={() => setShowWhyModal(true)}
+            />
+          </div>
         </div>
+
+        {/* Why Technologies Modal */}
+        <Dialog
+          header={
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">🤔</span>
+              <span>ทำไมต้องเรียน Next.js, TypeScript และ React?</span>
+            </div>
+          }
+          visible={showWhyModal}
+          style={{ width: "90vw", maxWidth: "1200px" }}
+          onHide={() => setShowWhyModal(false)}
+          dismissableMask
+          draggable={false}
+        >
+          <div className="p-4">
+            <div className="grid md:grid-cols-3 gap-6 mb-6">
+              {/* React */}
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div className="text-5xl mb-4 text-center">⚛️</div>
+                <h3 className="text-xl font-bold text-blue-900 mb-3 text-center">
+                  React
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Component-Based:</strong> สร้าง UI แบบแยกส่วน
+                      นำกลับมาใช้ได้
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Virtual DOM:</strong> อัพเดท UI
+                      ได้เร็วและมีประสิทธิภาพ
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Huge Ecosystem:</strong> Library และ Tools มากมาย
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Job Market:</strong> ตำแหน่งงานเยอะที่สุดในตลาด
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* TypeScript */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div className="text-5xl mb-4 text-center">📘</div>
+                <h3 className="text-xl font-bold text-blue-900 mb-3 text-center">
+                  TypeScript
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Type Safety:</strong> จับ error ก่อน runtime
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>IntelliSense:</strong> Autocomplete
+                      ช่วยเขียนโค้ดเร็วขึ้น
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Refactoring:</strong> แก้โค้ดได้ปลอดภัย มั่นใจขึ้น
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Industry Standard:</strong>{" "}
+                      บริษัทใหญ่ใช้กันแทบทั้งหมด
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Next.js */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div className="text-5xl mb-4 text-center">🚀</div>
+                <h3 className="text-xl font-bold text-green-900 mb-3 text-center">
+                  Next.js
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>SSR & SSG:</strong> SEO ดี โหลดเร็ว Performance
+                      สูง
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>App Router:</strong> Routing ทันสมัย ใช้งานง่าย
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Full-Stack:</strong> เขียน API Routes
+                      ได้ในโปรเจคเดียว
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Production Ready:</strong> Deploy ง่าย
+                      ใช้งานจริงได้เลย
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Bottom Summary */}
+            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-xl p-6 mb-6">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">💡</div>
+                <div>
+                  <h4 className="text-lg font-bold text-gray-800 mb-2">
+                    พลังของการผสมผสานทั้ง 3 เทคโนโลยี
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed">
+                    เมื่อใช้ <strong className="text-blue-600">React</strong> +{" "}
+                    <strong className="text-blue-700">TypeScript</strong> +{" "}
+                    <strong className="text-green-600">Next.js</strong> ร่วมกัน
+                    คุณจะได้{" "}
+                    <strong>
+                      Web Application ที่มี Type Safety, Component-Based
+                      Architecture, SEO-Friendly, และ Performance สูง
+                    </strong>{" "}
+                    - ซึ่งเป็นสิ่งที่บริษัทชั้นนำทั่วโลกต้องการในปัจจุบัน! 🌟
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+              <div className="bg-blue-100 rounded-lg p-4">
+                <div className="text-2xl font-bold text-blue-600">
+                  🏢 Top Companies
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  Facebook, Netflix, Airbnb
+                </div>
+              </div>
+              <div className="bg-purple-100 rounded-lg p-4">
+                <div className="text-2xl font-bold text-purple-600">
+                  📈 High Demand
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  เงินเดือนสูง ตำแหน่งงานเยอะ
+                </div>
+              </div>
+              <div className="bg-green-100 rounded-lg p-4">
+                <div className="text-2xl font-bold text-green-600">
+                  🚀 Future Proof
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  เทคโนโลยีที่ใช้ในอนาคต
+                </div>
+              </div>
+            </div>
+          </div>
+        </Dialog>
 
         {/* Course Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
@@ -81,42 +273,6 @@ export default function Home() {
             </div>
           ))}
         </div>
-
-        {/* Features */}
-        {/* <div className="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-            What You&apos;ll Learn
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center p-4">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="font-semibold text-gray-800 mb-2">
-                Practical Examples
-              </h3>
-              <p className="text-gray-600">
-                Hands-on code examples with interactive demonstrations
-              </p>
-            </div>
-            <div className="text-center p-4">
-              <div className="text-4xl mb-4">🔧</div>
-              <h3 className="font-semibold text-gray-800 mb-2">
-                Real Implementation
-              </h3>
-              <p className="text-gray-600">
-                Working components and navigation patterns
-              </p>
-            </div>
-            <div className="text-center p-4">
-              <div className="text-4xl mb-4">📚</div>
-              <h3 className="font-semibold text-gray-800 mb-2">
-                Best Practices
-              </h3>
-              <p className="text-gray-600">
-                Industry standards and modern development approaches
-              </p>
-            </div>
-          </div>
-        </div> */}
       </main>
     </div>
   );
