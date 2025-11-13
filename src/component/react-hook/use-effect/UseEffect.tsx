@@ -119,14 +119,7 @@ export const UseEffectHookExample = () => {
     };
   }, []);
 
-  // 7. useEffect กับ localStorage - sync กับ external system
-  useEffect(() => {
-    if (name) {
-      localStorage.setItem("userName", name);
-    }
-  }, [name]);
-
-  // 8. useEffect สำหรับเปลี่ยน document title
+  // 7. useEffect สำหรับเปลี่ยน document title
   useEffect(() => {
     document.title = pageTitle;
 
@@ -362,45 +355,8 @@ export const UseEffectHookExample = () => {
         </div>
       </Card>
 
-      {/* ตัวอย่างที่ 7: localStorage */}
-      <Card title="7. useEffect กับ localStorage" className="mb-4">
-        <p className="mb-3">
-          <strong>ลักษณะ:</strong> ใช้สำหรับ sync state กับ localStorage
-        </p>
-        <div className="bg-gray-100 p-4 rounded mb-3">
-          <div className="flex flex-col gap-3">
-            <InputText
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="กรอกชื่อของคุณ"
-            />
-            {name && (
-              <p className="text-green-600">
-                ✓ จะบันทึกอัตโนมัติ: <strong>{name}</strong>
-              </p>
-            )}
-            <p className="text-sm text-gray-600">
-              (ข้อมูลจะถูกบันทึกลง localStorage อัตโนมัติและคงอยู่แม้รีเฟรชหน้า)
-            </p>
-          </div>
-        </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`// โหลดค่าเริ่มต้นด้วย lazy initialization
-const [name, setName] = useState(() => {
-  return localStorage.getItem('userName') || '';
-});
-
-// Sync state กับ localStorage เมื่อ name เปลี่ยน
-useEffect(() => {
-  if (name) {
-    localStorage.setItem('userName', name);
-  }
-}, [name]);`}</pre>
-        </div>
-      </Card>
-
-      {/* ตัวอย่างที่ 8: Document Title */}
-      <Card title="8. useEffect กับ Document Title" className="mb-4">
+      {/* ตัวอย่างที่ 7: Document Title */}
+      <Card title="7. useEffect กับ Document Title" className="mb-4">
         <p className="mb-3">
           <strong>ลักษณะ:</strong> ใช้สำหรับเปลี่ยน title ของเบราว์เซอร์
         </p>
