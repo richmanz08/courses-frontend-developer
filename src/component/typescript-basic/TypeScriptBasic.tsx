@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { TerminalUI } from "../ui/TerminalUI";
 
 interface TypeScriptBasicProps {
   title: string;
@@ -59,208 +60,205 @@ export const TypeScriptBasicComponent: React.FC<TypeScriptBasicProps> = ({
             ตัวอย่างการใช้งาน TypeScript พื้นฐาน - Interface, Enum, Union Types
           </p>
         </div>
-
-        {/* TypeScript Features Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-blue-100 rounded-lg p-4 text-center">
-            <div className="text-2xl mb-2">📋</div>
-            <h3 className="font-semibold text-blue-800">Interface</h3>
-            <p className="text-sm text-blue-600">กำหนดโครงสร้างข้อมูล</p>
-          </div>
-          <div className="bg-green-100 rounded-lg p-4 text-center">
-            <div className="text-2xl mb-2">📊</div>
-            <h3 className="font-semibold text-green-800">Enum</h3>
-            <p className="text-sm text-green-600">กำหนดค่าคงที่</p>
-          </div>
-          <div className="bg-purple-100 rounded-lg p-4 text-center">
-            <div className="text-2xl mb-2">🔀</div>
-            <h3 className="font-semibold text-purple-800">Union Types</h3>
-            <p className="text-sm text-purple-600">หลายประเภทในตัวเดียว</p>
-          </div>
-        </div>
-
-        {/* User Data Display */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
-          <div className="bg-slate-600 text-white p-4">
-            <h2 className="text-xl font-semibold">👤 User Profile Data</h2>
-            <p className="text-slate-200 text-sm">
-              แสดงข้อมูลผู้ใช้ตาม Interface IUserData
-            </p>
-          </div>
-          <div className="p-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Basic Info */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">
-                  📝 Basic Information
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">ID:</span>
-                    <span className="font-medium text-gray-800">{user.id}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Name:</span>
-                    <span className="font-medium text-gray-800">
-                      {user.name}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Phone:</span>
-                    <span className="font-medium text-gray-800">
-                      {user.phone || "Not provided"}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Role & Status */}
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-800 mb-3">
-                    🏷️ Role & Status
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Role (Enum):</span>
-                      <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          user.role === UserRole.ADMIN
-                            ? "bg-red-100 text-red-800"
-                            : "bg-blue-100 text-blue-800"
-                        }`}
-                      >
-                        {user.role}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Status (Union):</span>
-                      <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          user.status === "active"
-                            ? "bg-green-100 text-green-800"
-                            : user.status === "inactive"
-                            ? "bg-red-100 text-red-800"
-                            : "bg-yellow-100 text-yellow-800"
-                        }`}
-                      >
-                        {user.status}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Address Info */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">
-                  🏠 Address Information
-                </h3>
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-blue-600">Street:</span>
-                      <span className="font-medium text-blue-800">
-                        {user.address.street}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-blue-600">City:</span>
-                      <span className="font-medium text-blue-800">
-                        {user.address.city}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-blue-600">Zip Code:</span>
-                      <span className="font-medium text-blue-800">
-                        {user.address.zipCode}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Login Log */}
-                <div className="bg-green-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-3">
-                    📊 Latest Login Log
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-green-600">IP Address:</span>
-                      <span className="font-mono text-sm font-medium text-green-800">
-                        {user.loginLog[0].ipAddress}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-green-600">Date:</span>
-                      <span className="font-medium text-green-800">
-                        {user.loginLog[0].date}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Type Definitions Display */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Enum Example */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="bg-orange-600 text-white p-4">
-              <h3 className="text-lg font-semibold">📊 Enum Example</h3>
-            </div>
-            <div className="p-4">
-              <h4 className="font-semibold text-gray-800 mb-2">
-                UserRole Enum:
-              </h4>
-              <div className="space-y-2">
-                {Object.entries(UserRole).map(([key, value]) => (
-                  <div
-                    key={key}
-                    className="flex justify-between items-center bg-gray-50 p-2 rounded"
-                  >
-                    <span className="font-mono text-sm">{key}</span>
-                    <span className="text-orange-600 font-medium">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Union Type Example */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="bg-purple-600 text-white p-4">
-              <h3 className="text-lg font-semibold">🔀 Union Type Example</h3>
-            </div>
-            <div className="p-4">
-              <h4 className="font-semibold text-gray-800 mb-2">
-                Status Union Type:
-              </h4>
-              <div className="space-y-2">
-                {(["active", "inactive", "pending"] as Status[]).map(
-                  (status) => (
-                    <div
-                      key={status}
-                      className={`p-2 rounded flex justify-between items-center ${
-                        user.status === status
-                          ? "bg-purple-100 border-2 border-purple-300"
-                          : "bg-gray-50"
-                      }`}
-                    >
-                      <span className="font-mono text-sm">{status}</span>
-                      {user.status === status && (
-                        <span className="text-purple-600 text-sm font-medium">
-                          ✓ Current
-                        </span>
-                      )}
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+      <TerminalUI fileName="TypeScriptBasic.tsx" name="TypeScript">
+        <div className="mb-6">
+          <h3 className="text-green-400 font-bold mb-3">
+            📝 Type Definitions:
+          </h3>
+          <div className="text-sm">
+            {/* interface TypeScriptBasicProps */}
+            <div className="mb-4">
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">TypeScriptBasicProps</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <span className="text-blue-300">title</span>
+                <span className="text-gray-400">:</span>{" "}
+                <span className="text-teal-300">string</span>
+                <span className="text-gray-400">;</span>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* interface IUserData */}
+            <div className="mb-4">
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">IUserData</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">id</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">number</span>
+                  <span className="text-gray-400">;</span>{" "}
+                  <span className="text-gray-500">{"// 0, 1, -2, 1.23"}</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">name</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>{" "}
+                  <span className="text-gray-500">
+                    {"// 'Alice', 'Bob', ''"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-blue-300">phone</span>
+                  <span className="text-yellow-400">?</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>{" "}
+                  <span className="text-gray-500">{/* optional */}</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">role</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-400">UserRole</span>
+                  <span className="text-gray-400">;</span>{" "}
+                  <span className="text-gray-500">
+                    {/* UserRole.ADMIN, UserRole.USER */}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-blue-300">status</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-400">Status</span>
+                  <span className="text-gray-400">;</span>{" "}
+                  <span className="text-gray-500">
+                    {"// 'active', 'inactive', 'pending'"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-blue-300">address</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-400">IAddress</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">loginLog</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-400">LoginLog</span>
+                  <span className="text-gray-400">[];</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* enum UserRole */}
+            <div className="mb-4">
+              <span className="text-blue-400">enum</span>{" "}
+              <span className="text-teal-400">UserRole</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">ADMIN</span>{" "}
+                  <span className="text-gray-400">=</span>{" "}
+                  <span className="text-orange-300">&quot;admin&quot;</span>
+                  <span className="text-gray-400">,</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">USER</span>{" "}
+                  <span className="text-gray-400">=</span>{" "}
+                  <span className="text-orange-300">&quot;user&quot;</span>
+                  <span className="text-gray-400">,</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* interface LoginLog */}
+            <div className="mb-4">
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">LoginLog</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">date</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">ipAddress</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* interface IAddress */}
+            <div className="mb-4">
+              <span className="text-blue-400">interface</span>{" "}
+              <span className="text-teal-400">IAddress</span>{" "}
+              <span className="text-gray-400">{"{"}</span>
+              <div className="pl-4">
+                <div>
+                  <span className="text-blue-300">street</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">city</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+                <div>
+                  <span className="text-blue-300">zipCode</span>
+                  <span className="text-gray-400">:</span>{" "}
+                  <span className="text-teal-300">string</span>{" "}
+                  <span className="text-blue-400">|</span>{" "}
+                  <span className="text-teal-300">number</span>
+                  <span className="text-gray-400">;</span>
+                </div>
+              </div>
+              <span className="text-gray-400">{"}"}</span>
+            </div>
+
+            {/* type Status */}
+            <div className="mb-4">
+              <span className="text-blue-400">type</span>{" "}
+              <span className="text-teal-400">Status</span>{" "}
+              <span className="text-gray-400">=</span>{" "}
+              <span className="text-orange-300">&quot;active&quot;</span>{" "}
+              <span className="text-blue-400">|</span>{" "}
+              <span className="text-orange-300">&quot;inactive&quot;</span>{" "}
+              <span className="text-blue-400">|</span>{" "}
+              <span className="text-orange-300">&quot;pending&quot;</span>
+              <span className="text-gray-400">;</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-700 pt-4 flex flex-col">
+          <div>
+            <h3 className="text-yellow-400 font-bold mb-3">
+              📦 User Data Example:
+            </h3>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+          </div>
+          <div>
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+              <h4 className="text-lg font-bold mb-2">User Information</h4>
+              <p>
+                <span className="text-blue-300">Name:</span> {user.name}
+              </p>
+              <p>
+                <span className="text-blue-300">Role:</span> {user.role}
+              </p>
+              <p>
+                <span className="text-blue-300">Address:</span>{" "}
+                {user.address.street}, {user.address.city},{" "}
+                {user.address.zipCode}
+              </p>
+            </div>
+          </div>
+        </div>
+      </TerminalUI>
     </div>
   );
 };
