@@ -31,8 +31,8 @@ export default function Page() {
     command: () => router.push("/"),
   };
   return (
-    <div>
-      <BreadCrumb model={items} home={home} className="my-4" />
+    <div className="bg-gradient-to-br from-blue-50 to-cyan-100 to-indigo-100 min-h-screen">
+      <BreadCrumb model={items} home={home} />
       <UserRoutePageExample userID={userID} />
     </div>
   );

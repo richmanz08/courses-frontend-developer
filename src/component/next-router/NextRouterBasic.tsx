@@ -8,7 +8,7 @@ export const NextRouterBasicExampleComponent = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-8 rounded-xl shadow-lg">
+    <div className="p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -26,11 +26,11 @@ export const NextRouterBasicExampleComponent = () => {
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">💻</span>
             <h2 className="text-xl font-semibold text-gray-800">
-              router push() ตัวอย่างพื้นฐาน
+              router.push() ตัวอย่างพื้นฐาน
             </h2>
           </div>
 
-          <TerminalUI fileName="router-example.tsx" name="TypeScript">
+          <TerminalUI fileName="NextRouterBasic.tsx" name="Use Router Push">
             {/* Code Content */}
             <div className="bg-gray-900 p-4 overflow-x-auto">
               <pre className="text-sm leading-relaxed">
@@ -88,27 +88,6 @@ export const NextRouterBasicExampleComponent = () => {
                 />
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-8 p-6 bg-white rounded-lg shadow-md">
-          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🧭</span>
-              <span className="text-gray-600">Next.js App Router</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🎣</span>
-              <span className="text-gray-600">Navigation Hooks</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🔗</span>
-              <span className="text-gray-600">Client-side Navigation</span>
-            </div>
-          </div>
-          <div className="mt-4 text-sm text-gray-500">
-            Interactive Next.js Router Learning Experience
           </div>
         </div>
       </div>
