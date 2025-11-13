@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
+import { TerminalUI } from "../ui/TerminalUI";
 
 export const NextRouterBasicExampleComponent = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ export const NextRouterBasicExampleComponent = () => {
         </div>
 
         {/* Content router push */}
-        <div className="border-l-4 border-blue-500 bg-white rounded-lg p-6 mb-6">
+        <div className="bg-white rounded-lg p-6 mb-6">
           {/* Code Example Header */}
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">💻</span>
@@ -29,23 +30,7 @@ export const NextRouterBasicExampleComponent = () => {
             </h2>
           </div>
 
-          {/* Code Block */}
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-            {/* Code Header */}
-            <div className="bg-gray-800 text-white px-4 py-2 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="flex gap-1">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <span className="ml-3 text-sm font-medium">
-                  router-example.tsx
-                </span>
-              </div>
-              <div className="text-xs text-gray-300">TypeScript</div>
-            </div>
-
+          <TerminalUI fileName="router-example.tsx" name="TypeScript">
             {/* Code Content */}
             <div className="bg-gray-900 p-4 overflow-x-auto">
               <pre className="text-sm leading-relaxed">
@@ -78,7 +63,7 @@ export const NextRouterBasicExampleComponent = () => {
                 </code>
               </pre>
             </div>
-          </div>
+          </TerminalUI>
 
           {/* Action Section */}
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">

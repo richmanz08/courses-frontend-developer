@@ -105,7 +105,7 @@ export const InheritanceExampleComponent = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-xl shadow-lg">
+    <div className="p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">

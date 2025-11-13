@@ -50,7 +50,7 @@ export const TypeScriptBasicComponent: React.FC<TypeScriptBasicProps> = ({
     loginLog: [{ date: "2023-01-01", ipAddress: "192.168.1.1" }],
   };
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-8 rounded-xl shadow-lg">
+    <div className="p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">

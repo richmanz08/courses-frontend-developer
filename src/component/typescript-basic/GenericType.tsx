@@ -55,7 +55,7 @@ export const GenericTypeExampleComponent = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-xl shadow-lg">
+    <div className="p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
