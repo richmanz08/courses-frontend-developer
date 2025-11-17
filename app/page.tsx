@@ -32,6 +32,13 @@ export default function Home() {
       path: "/react-hook",
       color: "bg-red-500",
     },
+    {
+      title: "Lodash",
+      description: "Utilize Lodash for efficient data manipulation",
+      icon: "📦",
+      path: "/lodash",
+      color: "bg-purple-500",
+    },
   ];
 
   return (
