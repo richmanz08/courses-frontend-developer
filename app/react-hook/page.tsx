@@ -1,5 +1,6 @@
 "use client";
 import { UseEffectHookExample } from "@/src/component/react-hook/use-effect/UseEffect";
+import { UseLayoutEffectExample } from "@/src/component/react-hook/use-layout-effect/UseLayoutEffect";
 import { UseStateHookExample } from "@/src/component/react-hook/use-state/UseState";
 import { useRouter } from "next/navigation";
 import { BreadCrumb } from "primereact/breadcrumb";
@@ -36,6 +37,10 @@ export default function Page() {
 
           <TabPanel header="useEffect">
             <UseEffectHookExample />
+          </TabPanel>
+
+          <TabPanel header="useLayoutEffect">
+            <UseLayoutEffectExample />
           </TabPanel>
         </TabView>
       </div>
