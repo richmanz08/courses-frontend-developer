@@ -29,7 +29,7 @@ export const OmitLodashExample = () => {
         Lodash Omit & Pick Example
       </h2>
 
-      <TerminalUI fileName="Omit.tsx" name="Lodash Omit & Pick Example">
+      <TerminalUI fileName="OmitAndPick.tsx" name="Lodash Omit & Pick Example">
         <pre className="text-sm leading-relaxed">
           <code>
             <span className="text-pink-400">import</span> {`{ `}
