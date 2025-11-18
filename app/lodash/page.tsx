@@ -4,6 +4,7 @@ import { EveryLodashExample } from "@/src/component/lodash/Every";
 import { FilterLodashExample } from "@/src/component/lodash/Filter";
 import { FindLodashExample } from "@/src/component/lodash/Find";
 import { ForEachLodashExample } from "@/src/component/lodash/ForEach";
+import { GetLodashExample } from "@/src/component/lodash/Get";
 import { IsEqualLodashExample } from "@/src/component/lodash/IsEqual";
 import { MapLodashExample } from "@/src/component/lodash/Map";
 import { OmitLodashExample } from "@/src/component/lodash/OmitAndPick";
@@ -36,6 +37,9 @@ export default function Page() {
     <div>
       <BreadCrumb model={items} home={home} className="my-4" />
       <TabView>
+        <TabPanel header="Get">
+          <GetLodashExample />
+        </TabPanel>
         <TabPanel header="Map">
           <MapLodashExample />
         </TabPanel>
