@@ -3,6 +3,7 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Tag } from "primereact/tag";
 import { useState } from "react";
+import { TerminalUI } from "../../../ui/TerminalUI";
 interface User {
   id: number;
   name: string;
@@ -77,7 +78,7 @@ export const IntermediateExample = () => {
             />
           </div>
         </div>
-        <div className="mt-4 p-4 bg-white rounded border">
+        <div className="mt-4 p-4 bg-white rounded border mb-4">
           <p>
             <strong>ID:</strong> {user.id}
           </p>
@@ -91,10 +92,31 @@ export const IntermediateExample = () => {
             <strong>Role:</strong> <Tag value={user.role} severity="success" />
           </p>
         </div>
-        <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-          <code>{`const [user, setUser] = useState({ id: 1, name: "John", role: "user" });
-    setUser({ ...user, name: newName }); // Update specific property`}</code>
-        </pre>
+        <TerminalUI fileName="ObjectState.tsx" name="Object State">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span> [
+              <span className="text-blue-300">user</span>,{" "}
+              <span className="text-blue-300">setUser</span>] ={" "}
+              <span className="text-yellow-300">useState</span>({"{"}
+              {"\n  "}
+              <span className="text-blue-300">id</span>:{" "}
+              <span className="text-orange-400">1</span>,{"\n  "}
+              <span className="text-blue-300">name</span>:{" "}
+              <span className="text-green-400">&quot;John&quot;</span>,{"\n  "}
+              <span className="text-blue-300">role</span>:{" "}
+              <span className="text-green-400">&quot;user&quot;</span>
+              {"\n});"}
+              {"\n\n"}
+              <span className="text-gray-500">{`// Update specific property`}</span>
+              {"\n"}
+              <span className="text-blue-300">setUser</span>({"{ ..."}
+              <span className="text-blue-300">user</span>,{" "}
+              <span className="text-blue-300">name</span>:{" "}
+              <span className="text-blue-300">newName</span> {"}"});
+            </code>
+          </pre>
+        </TerminalUI>
       </div>
 
       {/* 6. Form Data */}
@@ -122,13 +144,35 @@ export const IntermediateExample = () => {
             }
           />
         </div>
-        <div className="bg-white p-4 rounded border">
+        <div className="bg-white p-4 rounded borde mb-4">
           <pre className="text-sm">{JSON.stringify(formData, null, 2)}</pre>
         </div>
-        <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-          <code>{`const [formData, setFormData] = useState({ username: "", email: "", age: 0 });
-    setFormData(prev => ({ ...prev, [field]: value }));`}</code>
-        </pre>
+        <TerminalUI fileName="FormState.tsx" name="Form Management">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span> [
+              <span className="text-blue-300">formData</span>,{" "}
+              <span className="text-blue-300">setFormData</span>] ={" "}
+              <span className="text-yellow-300">useState</span>({"{"}
+              {"\n  "}
+              <span className="text-blue-300">username</span>:{" "}
+              <span className="text-green-400">&quot;&quot;</span>,{" "}
+              <span className="text-blue-300">email</span>:{" "}
+              <span className="text-green-400">&quot;&quot;</span>,{" "}
+              <span className="text-blue-300">age</span>:{" "}
+              <span className="text-orange-400">0</span>
+              {"\n});"}
+              {"\n\n"}
+              <span className="text-gray-500">{`// Dynamic field update`}</span>
+              {"\n"}
+              <span className="text-blue-300">setFormData</span>(
+              <span className="text-blue-300">prev</span> {`=> ({ ...`}
+              <span className="text-blue-300">prev</span>, [
+              <span className="text-blue-300">field</span>]:{" "}
+              <span className="text-blue-300">value</span> {"}));"}
+            </code>
+          </pre>
+        </TerminalUI>
       </div>
     </Card>
   );

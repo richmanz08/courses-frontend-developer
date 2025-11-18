@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Message } from "primereact/message";
 import { Divider } from "primereact/divider";
+import { TerminalUI } from "../../ui/TerminalUI";
 
 export const UseRefExample = () => {
   // Demo 1: Access DOM elements

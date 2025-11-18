@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Message } from "primereact/message";
 import { Divider } from "primereact/divider";
+import { TerminalUI } from "../../ui/TerminalUI";
 
 // Child component ที่ใช้ memo เพื่อป้องกัน re-render
 interface CounterButtonProps {
@@ -176,14 +177,37 @@ export const UseCallbackExample = () => {
             </div>
           </div>
 
-          <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-            <pre>{`import { useCallback } from 'react';
-
-const memoizedCallback = useCallback(() => {
-  // Function body
-  doSomething(a, b);
-}, [a, b]); // Re-create function เมื่อ a หรือ b เปลี่ยน`}</pre>
-          </div>
+          <TerminalUI fileName="UseCallback.tsx" name="useCallback Syntax">
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">import</span>
+                {" { "}
+                <span className="text-yellow-300">useCallback</span>
+                {" } "}
+                <span className="text-pink-400">from</span>{" "}
+                <span className="text-green-400">&apos;react&apos;</span>
+                {";\n\n"}
+                <span className="text-pink-400">const</span>{" "}
+                <span className="text-blue-300">memoizedCallback</span>
+                {" = "}
+                <span className="text-yellow-300">useCallback</span>
+                {"(() => {\n  "}
+                {/* Function body */}
+                {"\n  "}
+                <span className="text-yellow-300">doSomething</span>
+                {"("}
+                <span className="text-blue-300">a</span>
+                {", "}
+                <span className="text-blue-300">b</span>
+                {");\n}, ["}
+                <span className="text-blue-300">a</span>
+                {", "}
+                <span className="text-blue-300">b</span>
+                {"]); "}
+                {/* Re-create function เมื่อ a หรือ b เปลี่ยน */}
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
       </Card>
 
@@ -257,23 +281,62 @@ const memoizedCallback = useCallback(() => {
           </p>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`// ❌ Function ใหม่ทุกครั้งที่ parent render
-const increment = () => {
-  setCount(prev => prev + 1);
-};
-
-// ✅ Function เดิม (same reference)
-const increment = useCallback(() => {
-  setCount(prev => prev + 1);
-}, []); // Empty deps = function ไม่เปลี่ยน
-
-// Child component with React.memo
-const Button = memo(({ onClick }) => {
-  // จะ re-render เฉพาะเมื่อ onClick reference เปลี่ยน
-  return <button onClick={onClick}>Click</button>;
-});`}</pre>
-        </div>
+        <TerminalUI fileName="WithVsWithout.tsx" name="useCallback Comparison">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              {/* ❌ Function ใหม่ทุกครั้งที่ parent render */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">increment</span>
+              {" = () => {\n  "}
+              <span className="text-yellow-300">setCount</span>
+              {"("}
+              <span className="text-blue-300">prev</span>
+              {" => "}
+              <span className="text-blue-300">prev</span>
+              {" + "}
+              <span className="text-orange-400">1</span>
+              {");\n};\n\n"}
+              {/* ✅ Function เดิม (same reference) */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">increment</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(() => {\n  "}
+              <span className="text-yellow-300">setCount</span>
+              {"("}
+              <span className="text-blue-300">prev</span>
+              {" => "}
+              <span className="text-blue-300">prev</span>
+              {" + "}
+              <span className="text-orange-400">1</span>
+              {");\n}, []); "}
+              {/* Empty deps = function ไม่เปลี่ยน */}
+              {"\n\n"}
+              {/* Child component with React.memo */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">Button</span>
+              {" = "}
+              <span className="text-yellow-300">memo</span>
+              {"(({ "}
+              <span className="text-blue-300">onClick</span>
+              {" }) => {\n  "}
+              {/* จะ re-render เฉพาะเมื่อ onClick reference เปลี่ยน */}
+              {"\n  "}
+              <span className="text-pink-400">return</span>
+              {" <"}
+              <span className="text-blue-300">button</span>{" "}
+              <span className="text-blue-300">onClick</span>
+              {"={"}
+              <span className="text-blue-300">onClick</span>
+              {"}>Click</"}
+              <span className="text-blue-300">button</span>
+              {">;\n});"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 2: Event Handlers */}
@@ -333,18 +396,68 @@ const Button = memo(({ onClick }) => {
           </div>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`const handleAddItem = useCallback(() => {
-  if (newItem.trim()) {
-    setItems(prev => [...prev, newItem]);
-    setNewItem('');
-  }
-}, [newItem]); // Re-create เมื่อ newItem เปลี่ยน
-
-const handleRemoveItem = useCallback((index: number) => {
-  setItems(prev => prev.filter((_, i) => i !== index));
-}, []); // ไม่ต้อง re-create (ใช้ functional update)`}</pre>
-        </div>
+        <TerminalUI
+          fileName="EventHandlers.tsx"
+          name="Event Handlers with useCallback"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleAddItem</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">newItem</span>
+              {"."}
+              <span className="text-yellow-300">trim</span>
+              {"()) {\n    "}
+              <span className="text-yellow-300">setItems</span>
+              {"("}
+              <span className="text-blue-300">prev</span>
+              {" => [..."}
+              <span className="text-blue-300">prev</span>
+              {", "}
+              <span className="text-blue-300">newItem</span>
+              {"]);\n    "}
+              <span className="text-yellow-300">setNewItem</span>
+              {"("}
+              <span className="text-green-400">&apos;&apos;</span>
+              {");\n  }\n}, ["}
+              <span className="text-blue-300">newItem</span>
+              {"]); "}
+              {/* Re-create เมื่อ newItem เปลี่ยน */}
+              {"\n\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleRemoveItem</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(("}
+              <span className="text-blue-300">index</span>
+              {": "}
+              <span className="text-pink-400">number</span>
+              {") => {\n  "}
+              <span className="text-yellow-300">setItems</span>
+              {"("}
+              <span className="text-blue-300">prev</span>
+              {" => "}
+              <span className="text-blue-300">prev</span>
+              {"."}
+              <span className="text-yellow-300">filter</span>
+              {"(("}
+              <span className="text-blue-300">_</span>
+              {", "}
+              <span className="text-blue-300">i</span>
+              {") => "}
+              <span className="text-blue-300">i</span>
+              {" !== "}
+              <span className="text-blue-300">index</span>
+              {"));\n}, []); "}
+              {/* ไม่ต้อง re-create (ใช้ functional update) */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 3: Search with useCallback */}
@@ -389,27 +502,97 @@ const handleRemoveItem = useCallback((index: number) => {
           </p>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`// Parent component
-const handleSearch = useCallback((term: string) => {
-  const results = products.filter(p =>
-    p.toLowerCase().includes(term.toLowerCase())
-  );
-  setSearchResults(results);
-}, [products]);
-
-// Child component (memoized)
-const SearchBox = memo(({ onSearch }) => {
-  const [value, setValue] = useState('');
-  
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    onSearch(e.target.value); // Stable reference
-  };
-  
-  return <input onChange={handleChange} />;
-});`}</pre>
-        </div>
+        <TerminalUI fileName="SearchHandler.tsx" name="Search with useCallback">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              {/* Parent component */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleSearch</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(("}
+              <span className="text-blue-300">term</span>
+              {": "}
+              <span className="text-pink-400">string</span>
+              {") => {\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">results</span>
+              {" = "}
+              <span className="text-blue-300">products</span>
+              {"."}
+              <span className="text-yellow-300">filter</span>
+              {"("}
+              <span className="text-blue-300">p</span>
+              {" =>\n    "}
+              <span className="text-blue-300">p</span>
+              {"."}
+              <span className="text-yellow-300">toLowerCase</span>
+              {"()."}
+              <span className="text-yellow-300">includes</span>
+              {"("}
+              <span className="text-blue-300">term</span>
+              {"."}
+              <span className="text-yellow-300">toLowerCase</span>
+              {"())\n  );\n  "}
+              <span className="text-yellow-300">setSearchResults</span>
+              {"("}
+              <span className="text-blue-300">results</span>
+              {");\n}, ["}
+              <span className="text-blue-300">products</span>
+              {"]);\n\n"}
+              {/* Child component (memoized) */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">SearchBox</span>
+              {" = "}
+              <span className="text-yellow-300">memo</span>
+              {"(({ "}
+              <span className="text-blue-300">onSearch</span>
+              {" }) => {\n  "}
+              <span className="text-pink-400">const</span>
+              {" ["}
+              <span className="text-blue-300">value</span>
+              {", "}
+              <span className="text-yellow-300">setValue</span>
+              {"] = "}
+              <span className="text-yellow-300">useState</span>
+              {"("}
+              <span className="text-green-400">&apos;&apos;</span>
+              {");\n  \n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleChange</span>
+              {" = ("}
+              <span className="text-blue-300">e</span>
+              {") => {\n    "}
+              <span className="text-yellow-300">setValue</span>
+              {"("}
+              <span className="text-blue-300">e</span>
+              {"."}
+              <span className="text-blue-300">target</span>
+              {"."}
+              <span className="text-blue-300">value</span>
+              {");\n    "}
+              <span className="text-yellow-300">onSearch</span>
+              {"("}
+              <span className="text-blue-300">e</span>
+              {"."}
+              <span className="text-blue-300">target</span>
+              {"."}
+              <span className="text-blue-300">value</span>
+              {"); "}
+              {/* Stable reference */}
+              {"\n  };\n  \n  "}
+              <span className="text-pink-400">return</span>
+              {" <"}
+              <span className="text-blue-300">input</span>{" "}
+              <span className="text-blue-300">onChange</span>
+              {"={"}
+              <span className="text-yellow-300">handleChange</span>
+              {"} />;\n});"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 4: API Calls */}
@@ -459,19 +642,67 @@ const SearchBox = memo(({ onSearch }) => {
           </p>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`const fetchUser = useCallback(async () => {
-  console.log('Fetching user:', userId);
-  const response = await fetch(\`/api/users/\${userId}\`);
-  const data = await response.json();
-  setUserData(data);
-}, [userId]); // Re-create เมื่อ userId เปลี่ยน
-
-// ใช้กับ useEffect
-useEffect(() => {
-  fetchUser();
-}, [fetchUser]); // fetchUser เป็น dependency ที่ stable`}</pre>
-        </div>
+        <TerminalUI
+          fileName="APIWithCallback.tsx"
+          name="API Calls with useCallback"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">fetchUser</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"("}
+              <span className="text-pink-400">async</span>
+              {" () => {\n  "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">&apos;Fetching user:&apos;</span>
+              {", "}
+              <span className="text-blue-300">userId</span>
+              {");\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">response</span>
+              {" = "}
+              <span className="text-pink-400">await</span>{" "}
+              <span className="text-yellow-300">fetch</span>
+              {"("}
+              <span className="text-green-400">`/api/users/$</span>
+              {"{"}
+              <span className="text-blue-300">userId</span>
+              {"}"}
+              <span className="text-green-400">`</span>
+              {");\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">data</span>
+              {" = "}
+              <span className="text-pink-400">await</span>{" "}
+              <span className="text-blue-300">response</span>
+              {"."}
+              <span className="text-yellow-300">json</span>
+              {"();\n  "}
+              <span className="text-yellow-300">setUserData</span>
+              {"("}
+              <span className="text-blue-300">data</span>
+              {");\n}, ["}
+              <span className="text-blue-300">userId</span>
+              {"]); "}
+              {/* Re-create เมื่อ userId เปลี่ยน */}
+              {"\n\n"}
+              {/* ใช้กับ useEffect */}
+              {"\n"}
+              <span className="text-yellow-300">useEffect</span>
+              {"(() => {\n  "}
+              <span className="text-yellow-300">fetchUser</span>
+              {"();\n}, ["}
+              <span className="text-yellow-300">fetchUser</span>
+              {"]); "}
+              {/* fetchUser เป็น dependency ที่ stable */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       <Divider />
@@ -644,42 +875,130 @@ useEffect(() => {
 
       {/* Syntax Summary */}
       <Card title="📖 สรุปรูปแบบการใช้งาน" className="mb-4">
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`import { useCallback, memo } from 'react';
-
-// Basic: Simple callback
-const handleClick = useCallback(() => {
-  console.log('Clicked!');
-}, []); // ไม่มี dependencies = function เดิมตลอด
-
-// With parameters
-const handleItemClick = useCallback((id: number) => {
-  console.log('Item clicked:', id);
-}, []); // ใช้ parameter จาก event
-
-// With dependencies
-const handleSave = useCallback(() => {
-  saveData(userId, formData);
-}, [userId, formData]); // Re-create เมื่อ dependencies เปลี่ยน
-
-// With functional update (avoid dependencies)
-const handleIncrement = useCallback(() => {
-  setCount(prev => prev + 1); // ไม่ต้องใส่ count ใน deps
-}, []); // Empty deps
-
-// Pass to memoized child
-const MemoChild = memo(({ onClick }) => {
-  return <button onClick={onClick}>Click</button>;
-});
-
-function Parent() {
-  const handleClick = useCallback(() => {
-    // Do something
-  }, []);
-  
-  return <MemoChild onClick={handleClick} />;
-}`}</pre>
-        </div>
+        <TerminalUI fileName="UseCallbackPatterns.tsx" name="Common Patterns">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">import</span>
+              {" { "}
+              <span className="text-yellow-300">useCallback</span>
+              {", "}
+              <span className="text-yellow-300">memo</span>
+              {" } "}
+              <span className="text-pink-400">from</span>{" "}
+              <span className="text-green-400">&apos;react&apos;</span>
+              {";\n\n"}
+              {/* Basic: Simple callback */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleClick</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(() => {\n  "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">&apos;Clicked!&apos;</span>
+              {");\n}, []); "}
+              {/* ไม่มี dependencies = function เดิมตลอด */}
+              {"\n\n"}
+              {/* With parameters */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleItemClick</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(("}
+              <span className="text-blue-300">id</span>
+              {": "}
+              <span className="text-pink-400">number</span>
+              {") => {\n  "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">&apos;Item clicked:&apos;</span>
+              {", "}
+              <span className="text-blue-300">id</span>
+              {");\n}, []); "}
+              {/* ใช้ parameter จาก event */}
+              {"\n\n"}
+              {/* With dependencies */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleSave</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(() => {\n  "}
+              <span className="text-yellow-300">saveData</span>
+              {"("}
+              <span className="text-blue-300">userId</span>
+              {", "}
+              <span className="text-blue-300">formData</span>
+              {");\n}, ["}
+              <span className="text-blue-300">userId</span>
+              {", "}
+              <span className="text-blue-300">formData</span>
+              {"]); "}
+              {/* Re-create เมื่อ dependencies เปลี่ยน */}
+              {"\n\n"}
+              {/* With functional update (avoid dependencies) */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleIncrement</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(() => {\n  "}
+              <span className="text-yellow-300">setCount</span>
+              {"("}
+              <span className="text-blue-300">prev</span>
+              {" => "}
+              <span className="text-blue-300">prev</span>
+              {" + "}
+              <span className="text-orange-400">1</span>
+              {"); "}
+              {/* ไม่ต้องใส่ count ใน deps */}
+              {"\n}, []); "}
+              {/* Empty deps */}
+              {"\n\n"}
+              {/* Pass to memoized child */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">MemoChild</span>
+              {" = "}
+              <span className="text-yellow-300">memo</span>
+              {"(({ "}
+              <span className="text-blue-300">onClick</span>
+              {" }) => {\n  "}
+              <span className="text-pink-400">return</span>
+              {" <"}
+              <span className="text-blue-300">button</span>{" "}
+              <span className="text-blue-300">onClick</span>
+              {"={"}
+              <span className="text-blue-300">onClick</span>
+              {"}>Click</"}
+              <span className="text-blue-300">button</span>
+              {">;\n});\n\n"}
+              <span className="text-pink-400">function</span>{" "}
+              <span className="text-yellow-300">Parent</span>
+              {"() {\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleClick</span>
+              {" = "}
+              <span className="text-yellow-300">useCallback</span>
+              {"(() => {\n    "}
+              {/* Do something */}
+              {"\n  }, []);\n  \n  "}
+              <span className="text-pink-400">return</span>
+              {" <"}
+              <span className="text-yellow-300">MemoChild</span>{" "}
+              <span className="text-blue-300">onClick</span>
+              {"={"}
+              <span className="text-yellow-300">handleClick</span>
+              {"} />;\n}"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
     </div>
   );

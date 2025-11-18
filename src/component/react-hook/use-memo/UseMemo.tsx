@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 "use client";
 import { useState, useMemo } from "react";
 import { Card } from "primereact/card";
@@ -6,6 +7,7 @@ import { InputText } from "primereact/inputtext";
 import { Message } from "primereact/message";
 import { Divider } from "primereact/divider";
 import { Slider } from "primereact/slider";
+import { TerminalUI } from "../../ui/TerminalUI";
 
 export const UseMemoExample = () => {
   // Demo 1: Expensive calculation without useMemo
@@ -148,14 +150,38 @@ export const UseMemoExample = () => {
             </ul>
           </div>
 
-          <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-            <pre>{`import { useMemo } from 'react';
-
-const memoizedValue = useMemo(() => {
-  // Expensive calculation
-  return computeExpensiveValue(a, b);
-}, [a, b]); // Only recalculate when a or b changes`}</pre>
-          </div>
+          <TerminalUI fileName="UseMemo.tsx" name="useMemo Syntax">
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">import</span>
+                {" { "}
+                <span className="text-yellow-300">useMemo</span>
+                {" } "}
+                <span className="text-pink-400">from</span>{" "}
+                <span className="text-green-400">&apos;react&apos;</span>
+                {";\n\n"}
+                <span className="text-pink-400">const</span>{" "}
+                <span className="text-blue-300">memoizedValue</span>
+                {" = "}
+                <span className="text-yellow-300">useMemo</span>
+                {"(() => {\n  "}
+                <span className="text-gray-500">// Expensive calculation</span>
+                {"\n  "}
+                <span className="text-pink-400">return</span>{" "}
+                <span className="text-yellow-300">computeExpensiveValue</span>
+                {"("}
+                <span className="text-blue-300">a</span>
+                {", "}
+                <span className="text-blue-300">b</span>
+                {");\n}, ["}
+                <span className="text-blue-300">a</span>
+                {", "}
+                <span className="text-blue-300">b</span>
+                {"]); "}
+                {/* Only recalculate when a or b changes */}
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
       </Card>
 
@@ -225,21 +251,66 @@ const memoizedValue = useMemo(() => {
           </div>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`// ❌ คำนวณทุกครั้งที่ render
-const sum = () => {
-  let result = 0;
-  items.forEach(item => result += item);
-  return result;
-};
-
-// ✅ Cache ค่าไว้ คำนวณใหม่เมื่อ items เปลี่ยน
-const sum = useMemo(() => {
-  let result = 0;
-  items.forEach(item => result += item);
-  return result;
-}, [items]);`}</pre>
-        </div>
+        <TerminalUI fileName="WithVsWithout.tsx" name="useMemo Comparison">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-gray-500">
+                {/* ❌ คำนวณทุกครั้งที่ render */}
+              </span>
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">sum</span>
+              {" = () => {\n  "}
+              <span className="text-pink-400">let</span>{" "}
+              <span className="text-blue-300">result</span>
+              {" = "}
+              <span className="text-orange-400">0</span>
+              {";\n  "}
+              <span className="text-blue-300">items</span>
+              {"."}
+              <span className="text-yellow-300">forEach</span>
+              {"("}
+              <span className="text-blue-300">item</span>
+              {" => "}
+              <span className="text-blue-300">result</span>
+              {" += "}
+              <span className="text-blue-300">item</span>
+              {");\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">result</span>
+              {";\n};\n\n"}
+              <span className="text-gray-500">
+                {/* ✅ Cache ค่าไว้ คำนวณใหม่เมื่อ items เปลี่ยน */}
+              </span>
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">sum</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">let</span>{" "}
+              <span className="text-blue-300">result</span>
+              {" = "}
+              <span className="text-orange-400">0</span>
+              {";\n  "}
+              <span className="text-blue-300">items</span>
+              {"."}
+              <span className="text-yellow-300">forEach</span>
+              {"("}
+              <span className="text-blue-300">item</span>
+              {" => "}
+              <span className="text-blue-300">result</span>
+              {" += "}
+              <span className="text-blue-300">item</span>
+              {");\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">result</span>
+              {";\n}, ["}
+              <span className="text-blue-300">items</span>
+              {"]);"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 2: Filter/Search */}
@@ -292,15 +363,56 @@ const sum = useMemo(() => {
           </p>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`const filteredProducts = useMemo(() => {
-  console.log('🔍 Filtering...');
-  if (!searchTerm) return products;
-  return products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-}, [searchTerm, products]); // Re-filter เมื่อ searchTerm เปลี่ยน`}</pre>
-        </div>
+        <TerminalUI fileName="FilterSearch.tsx" name="useMemo with Filter">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">filteredProducts</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">
+                &apos;🔍 Filtering...&apos;
+              </span>
+              {");\n  "}
+              <span className="text-pink-400">if</span>
+              {" (!"}
+              <span className="text-blue-300">searchTerm</span>
+              {") "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">products</span>
+              {";\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">products</span>
+              {"."}
+              <span className="text-yellow-300">filter</span>
+              {"("}
+              <span className="text-blue-300">product</span>
+              {" =>\n    "}
+              <span className="text-blue-300">product</span>
+              {"."}
+              <span className="text-blue-300">name</span>
+              {"."}
+              <span className="text-yellow-300">toLowerCase</span>
+              {"()."}
+              <span className="text-yellow-300">includes</span>
+              {"("}
+              <span className="text-blue-300">searchTerm</span>
+              {"."}
+              <span className="text-yellow-300">toLowerCase</span>
+              {"())\n  );\n}, ["}
+              <span className="text-blue-300">searchTerm</span>
+              {", "}
+              <span className="text-blue-300">products</span>
+              {"]); "}
+              {/* Re-filter เมื่อ searchTerm เปลี่ยน */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 3: Complex Calculation */}
@@ -348,16 +460,60 @@ const sum = useMemo(() => {
           </div>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`const factorial = useMemo(() => {
-  console.log('🧮 Calculating factorial...');
-  const calculate = (n: number): number => {
-    if (n <= 1) return 1;
-    return n * calculate(n - 1);
-  };
-  return calculate(number);
-}, [number]); // คำนวณใหม่เมื่อ number เปลี่ยนเท่านั้น`}</pre>
-        </div>
+        <TerminalUI fileName="Factorial.tsx" name="useMemo with Recursion">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">factorial</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">
+                &apos;🧮 Calculating factorial...&apos;
+              </span>
+              {");\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">calculate</span>
+              {" = ("}
+              <span className="text-blue-300">n</span>
+              {": "}
+              <span className="text-pink-400">number</span>
+              {"): "}
+              <span className="text-pink-400">number</span>
+              {" => {\n    "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">n</span>
+              {" <= "}
+              <span className="text-orange-400">1</span>
+              {") "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-orange-400">1</span>
+              {";\n    "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">n</span>
+              {" * "}
+              <span className="text-yellow-300">calculate</span>
+              {"("}
+              <span className="text-blue-300">n</span>
+              {" - "}
+              <span className="text-orange-400">1</span>
+              {");\n  };\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-yellow-300">calculate</span>
+              {"("}
+              <span className="text-blue-300">number</span>
+              {");\n}, ["}
+              <span className="text-blue-300">number</span>
+              {"]); "}
+              {/* คำนวณใหม่เมื่อ number เปลี่ยนเท่านั้น */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 4: Reference Stability */}
@@ -393,21 +549,62 @@ const sum = useMemo(() => {
           </div>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`// ❌ สร้าง object ใหม่ทุกครั้งที่ render (reference ใหม่)
-const userConfig = {
-  name: userInput || 'Guest',
-  theme: 'dark',
-  language: 'th'
-};
-
-// ✅ สร้าง object ใหม่เมื่อ userInput เปลี่ยนเท่านั้น
-const userConfig = useMemo(() => ({
-  name: userInput || 'Guest',
-  theme: 'dark',
-  language: 'th'
-}), [userInput]); // Same reference ถ้า userInput ไม่เปลี่ยน`}</pre>
-        </div>
+        <TerminalUI
+          fileName="ReferenceStability.tsx"
+          name="useMemo for Object Reference"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-gray-500">
+                {/* ❌ สร้าง object ใหม่ทุกครั้งที่ render (reference ใหม่) */}
+              </span>
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">userConfig</span>
+              {" = {\n  "}
+              <span className="text-blue-300">name</span>
+              {": "}
+              <span className="text-blue-300">userInput</span>
+              {" || "}
+              <span className="text-green-400">&apos;Guest&apos;</span>
+              {",\n  "}
+              <span className="text-blue-300">theme</span>
+              {": "}
+              <span className="text-green-400">&apos;dark&apos;</span>
+              {",\n  "}
+              <span className="text-blue-300">language</span>
+              {": "}
+              <span className="text-green-400">&apos;th&apos;</span>
+              {"\n};\n\n"}
+              <span className="text-gray-500">
+                {/* ✅ สร้าง object ใหม่เมื่อ userInput เปลี่ยนเท่านั้น */}
+              </span>
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">userConfig</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => ({\n  "}
+              <span className="text-blue-300">name</span>
+              {": "}
+              <span className="text-blue-300">userInput</span>
+              {" || "}
+              <span className="text-green-400">&apos;Guest&apos;</span>
+              {",\n  "}
+              <span className="text-blue-300">theme</span>
+              {": "}
+              <span className="text-green-400">&apos;dark&apos;</span>
+              {",\n  "}
+              <span className="text-blue-300">language</span>
+              {": "}
+              <span className="text-green-400">&apos;th&apos;</span>
+              {"\n}), ["}
+              <span className="text-blue-300">userInput</span>
+              {"]); "}
+              {/* Same reference ถ้า userInput ไม่เปลี่ยน */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       <Divider />
@@ -564,37 +761,138 @@ const userConfig = useMemo(() => ({
 
       {/* Syntax Summary */}
       <Card title="📖 สรุปรูปแบบการใช้งาน" className="mb-4">
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`import { useMemo } from 'react';
-
-// Basic: Expensive calculation
-const result = useMemo(() => {
-  return expensiveCalculation(a, b);
-}, [a, b]);
-
-// Filter/Search
-const filtered = useMemo(() => {
-  return items.filter(item => item.active);
-}, [items]);
-
-// Sort
-const sorted = useMemo(() => {
-  return [...items].sort((a, b) => a.name.localeCompare(b.name));
-}, [items]);
-
-// Object/Array with stable reference
-const config = useMemo(() => ({
-  theme: theme,
-  language: lang
-}), [theme, lang]);
-
-// Derived state from multiple sources
-const totalPrice = useMemo(() => {
-  return cartItems.reduce((sum, item) => 
-    sum + (item.price * item.quantity), 0
-  );
-}, [cartItems]);`}</pre>
-        </div>
+        <TerminalUI
+          fileName="UseMemoPatterns.tsx"
+          name="Common useMemo Patterns"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">import</span>
+              {" { "}
+              <span className="text-yellow-300">useMemo</span>
+              {" } "}
+              <span className="text-pink-400">from</span>{" "}
+              <span className="text-green-400">&apos;react&apos;</span>
+              {";\n\n"}
+              {/* Basic: Expensive calculation */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">result</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-yellow-300">expensiveCalculation</span>
+              {"("}
+              <span className="text-blue-300">a</span>
+              {", "}
+              <span className="text-blue-300">b</span>
+              {");\n}, ["}
+              <span className="text-blue-300">a</span>
+              {", "}
+              <span className="text-blue-300">b</span>
+              {"]);\n\n"}
+              {/* Filter/Search */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">filtered</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">items</span>
+              {"."}
+              <span className="text-yellow-300">filter</span>
+              {"("}
+              <span className="text-blue-300">item</span>
+              {" => "}
+              <span className="text-blue-300">item</span>
+              {"."}
+              <span className="text-blue-300">active</span>
+              {");\n}, ["}
+              <span className="text-blue-300">items</span>
+              {"]);\n\n"}
+              {/* Sort */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">sorted</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">return</span>
+              {" [..."}
+              <span className="text-blue-300">items</span>
+              {"]."}
+              <span className="text-yellow-300">sort</span>
+              {"(("}
+              <span className="text-blue-300">a</span>
+              {", "}
+              <span className="text-blue-300">b</span>
+              {") => "}
+              <span className="text-blue-300">a</span>
+              {"."}
+              <span className="text-blue-300">name</span>
+              {"."}
+              <span className="text-yellow-300">localeCompare</span>
+              {"("}
+              <span className="text-blue-300">b</span>
+              {"."}
+              <span className="text-blue-300">name</span>
+              {"));\n}, ["}
+              <span className="text-blue-300">items</span>
+              {"]);\n\n"}
+              {/* Object/Array with stable reference */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">config</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => ({\n  "}
+              <span className="text-blue-300">theme</span>
+              {": "}
+              <span className="text-blue-300">theme</span>
+              {",\n  "}
+              <span className="text-blue-300">language</span>
+              {": "}
+              <span className="text-blue-300">lang</span>
+              {"\n}), ["}
+              <span className="text-blue-300">theme</span>
+              {", "}
+              <span className="text-blue-300">lang</span>
+              {"]);\n\n"}
+              {/* Derived state from multiple sources */}
+              {"\n"}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">totalPrice</span>
+              {" = "}
+              <span className="text-yellow-300">useMemo</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">return</span>{" "}
+              <span className="text-blue-300">cartItems</span>
+              {"."}
+              <span className="text-yellow-300">reduce</span>
+              {"(("}
+              <span className="text-blue-300">sum</span>
+              {", "}
+              <span className="text-blue-300">item</span>
+              {") => \n    "}
+              <span className="text-blue-300">sum</span>
+              {" + ("}
+              <span className="text-blue-300">item</span>
+              {"."}
+              <span className="text-blue-300">price</span>
+              {" * "}
+              <span className="text-blue-300">item</span>
+              {"."}
+              <span className="text-blue-300">quantity</span>
+              {"), "}
+              <span className="text-orange-400">0</span>
+              {"\n  );\n}, ["}
+              <span className="text-blue-300">cartItems</span>
+              {"]);"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
     </div>
   );

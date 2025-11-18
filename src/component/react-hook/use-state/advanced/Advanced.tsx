@@ -2,6 +2,7 @@ import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
+import { TerminalUI } from "../../../ui/TerminalUI";
 
 interface TodoItem {
   id: number;
@@ -92,7 +93,7 @@ export const AdvancedExample = () => {
             className="p-button-success"
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 mb-4">
           {todos.map((todo) => (
             <div
               key={todo.id}
@@ -119,11 +120,37 @@ export const AdvancedExample = () => {
             </div>
           ))}
         </div>
-        <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-          <code>{`const [todos, setTodos] = useState([...]);
-setTodos([...todos, newTodo]); // Add
-setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo));`}</code>
-        </pre>
+        <TerminalUI fileName="TodoList.tsx" name="Array of Objects">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">const</span> [
+              <span className="text-blue-300">todos</span>,{" "}
+              <span className="text-blue-300">setTodos</span>] ={" "}
+              <span className="text-yellow-300">useState</span>([...]);{"\n\n"}
+              <span className="text-gray-500">{`// Add todo`}</span>
+              {"\n"}
+              <span className="text-blue-300">setTodos</span>([...
+              <span className="text-blue-300">todos</span>,{" "}
+              <span className="text-blue-300">newTodo</span>]);{"\n\n"}
+              <span className="text-gray-500">{`// Toggle completed`}</span>
+              {"\n"}
+              <span className="text-blue-300">setTodos</span>(
+              <span className="text-blue-300">todos</span>.
+              <span className="text-yellow-300">map</span>(
+              <span className="text-blue-300">todo</span> {`=> `}
+              {"\n  "}
+              <span className="text-blue-300">todo</span>.
+              <span className="text-blue-300">id</span> ==={" "}
+              <span className="text-blue-300">id</span> ? {"{ ..."}
+              <span className="text-blue-300">todo</span>,{" "}
+              <span className="text-blue-300">completed</span>: !
+              <span className="text-blue-300">todo</span>.
+              <span className="text-blue-300">completed</span> {"} : "}
+              <span className="text-blue-300">todo</span>
+              {"\n));"}
+            </code>
+          </pre>
+        </TerminalUI>
       </div>
 
       {/* 8. Functional Updates */}
@@ -146,19 +173,29 @@ setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed
             className="p-button-success"
           />
         </div>
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded mb-4">
           <p className="text-sm text-yellow-800">
             <strong>⚠️ Important:</strong> Use functional updates when new state
             depends on previous state
           </p>
         </div>
-        <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-          <code>{`// ❌ Wrong - may use stale state
-setCounter(counter + 1);
-
-// ✅ Correct - always uses latest state
-setCounter(prev => prev + 1);`}</code>
-        </pre>
+        <TerminalUI fileName="FunctionalUpdate.tsx" name="Prevent Stale State">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-gray-500">{`// ❌ Wrong - may use stale state`}</span>
+              {"\n"}
+              <span className="text-blue-300">setCounter</span>(
+              <span className="text-blue-300">counter</span> +{" "}
+              <span className="text-orange-400">1</span>);{"\n\n"}
+              <span className="text-gray-500">{`// ✅ Correct - always uses latest state`}</span>
+              {"\n"}
+              <span className="text-blue-300">setCounter</span>(
+              <span className="text-blue-300">prev</span> {`=> `}
+              <span className="text-blue-300">prev</span> +{" "}
+              <span className="text-orange-400">1</span>);
+            </code>
+          </pre>
+        </TerminalUI>
       </div>
     </Card>
   );

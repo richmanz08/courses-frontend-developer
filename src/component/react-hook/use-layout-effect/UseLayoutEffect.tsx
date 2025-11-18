@@ -4,6 +4,7 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { Message } from "primereact/message";
 import { Divider } from "primereact/divider";
+import { TerminalUI } from "../../ui/TerminalUI";
 
 export const UseLayoutEffectExample = () => {
   // Demo 1: Visual Difference - useEffect vs useLayoutEffect
@@ -160,18 +161,34 @@ export const UseLayoutEffectExample = () => {
             </div>
           </div>
 
-          <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-            <pre>{`import { useLayoutEffect } from 'react';
-
-useLayoutEffect(() => {
-  // Code ที่รันก่อนเบราว์เซอร์ paint
-  // เหมาะสำหรับ: DOM measurements, animations, scroll positions
-  
-  return () => {
-    // Cleanup function
-  };
-}, [dependencies]);`}</pre>
-          </div>
+          <TerminalUI
+            fileName="UseLayoutEffect.tsx"
+            name="useLayoutEffect Syntax"
+          >
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">import</span>
+                {" { "}
+                <span className="text-yellow-300">useLayoutEffect</span>
+                {" } "}
+                <span className="text-pink-400">from</span>{" "}
+                <span className="text-green-400">&apos;react&apos;</span>
+                {";\n\n"}
+                <span className="text-yellow-300">useLayoutEffect</span>
+                {"(() => {\n  "}
+                {/* Code ที่รันก่อนเบราว์เซอร์ paint */}
+                {"\n  "}
+                {/* เหมาะสำหรับ: DOM measurements, animations, scroll positions */}
+                {"\n  \n  "}
+                <span className="text-pink-400">return</span>
+                {" () => {\n    "}
+                {/* Cleanup function */}
+                {"\n  };\n}, ["}
+                <span className="text-blue-300">dependencies</span>
+                {"]);"}
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
       </Card>
 
@@ -349,21 +366,63 @@ useLayoutEffect(() => {
           </p>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`// ❌ useEffect - อาจเห็น flicker
-useEffect(() => {
-  if (boxRef.current) {
-    boxRef.current.style.transform = 'translateX(200px)';
-  }
-}, [showBox]);
-
-// ✅ useLayoutEffect - smooth ไม่มี flicker
-useLayoutEffect(() => {
-  if (boxRef.current) {
-    boxRef.current.style.transform = 'translateX(200px)';
-  }
-}, [showBox]);`}</pre>
-        </div>
+        <TerminalUI
+          fileName="EffectComparison.tsx"
+          name="useEffect vs useLayoutEffect"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              {/* ❌ useEffect - อาจเห็น flicker */}
+              {"\n"}
+              <span className="text-yellow-300">useEffect</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">boxRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n    "}
+              <span className="text-blue-300">boxRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-blue-300">style</span>
+              {"."}
+              <span className="text-blue-300">transform</span>
+              {" = "}
+              <span className="text-green-400">
+                &apos;translateX(200px)&apos;
+              </span>
+              {";\n  }\n}, ["}
+              <span className="text-blue-300">showBox</span>
+              {"]);\n\n"}
+              {/* ✅ useLayoutEffect - smooth ไม่มี flicker */}
+              {"\n"}
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">boxRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n    "}
+              <span className="text-blue-300">boxRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-blue-300">style</span>
+              {"."}
+              <span className="text-blue-300">transform</span>
+              {" = "}
+              <span className="text-green-400">
+                &apos;translateX(200px)&apos;
+              </span>
+              {";\n  }\n}, ["}
+              <span className="text-blue-300">showBox</span>
+              {"]);"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 2: Measuring DOM */}
@@ -398,17 +457,47 @@ useLayoutEffect(() => {
           </div>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useLayoutEffect(() => {
-  if (measureRef.current) {
-    const rect = measureRef.current.getBoundingClientRect();
-    setDimensions({
-      width: rect.width,
-      height: rect.height
-    });
-  }
-}, []); // วัดครั้งเดียวตอน mount`}</pre>
-        </div>
+        <TerminalUI
+          fileName="MeasureDOM.tsx"
+          name="Measuring DOM with useLayoutEffect"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">measureRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n    "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">rect</span>
+              {" = "}
+              <span className="text-blue-300">measureRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-yellow-300">getBoundingClientRect</span>
+              {"();\n    "}
+              <span className="text-yellow-300">setDimensions</span>
+              {"({\n      "}
+              <span className="text-blue-300">width</span>
+              {": "}
+              <span className="text-blue-300">rect</span>
+              {"."}
+              <span className="text-blue-300">width</span>
+              {",\n      "}
+              <span className="text-blue-300">height</span>
+              {": "}
+              <span className="text-blue-300">rect</span>
+              {"."}
+              <span className="text-blue-300">height</span>
+              {"\n    });\n  }\n}, []); "}
+              {/* วัดครั้งเดียวตอน mount */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 3: Tooltip Positioning */}
@@ -452,17 +541,56 @@ useLayoutEffect(() => {
           )}
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useLayoutEffect(() => {
-  if (showTooltip && buttonRef.current) {
-    const rect = buttonRef.current.getBoundingClientRect();
-    setTooltipPosition({
-      top: rect.top - 50,
-      left: rect.left + rect.width / 2
-    });
-  }
-}, [showTooltip]); // คำนวณตำแหน่งใหม่เมื่อแสดง tooltip`}</pre>
-        </div>
+        <TerminalUI fileName="TooltipPosition.tsx" name="Tooltip Positioning">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">showTooltip</span>
+              {" && "}
+              <span className="text-blue-300">buttonRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n    "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">rect</span>
+              {" = "}
+              <span className="text-blue-300">buttonRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-yellow-300">getBoundingClientRect</span>
+              {"();\n    "}
+              <span className="text-yellow-300">setTooltipPosition</span>
+              {"({\n      "}
+              <span className="text-blue-300">top</span>
+              {": "}
+              <span className="text-blue-300">rect</span>
+              {"."}
+              <span className="text-blue-300">top</span>
+              {" - "}
+              <span className="text-orange-400">50</span>
+              {",\n      "}
+              <span className="text-blue-300">left</span>
+              {": "}
+              <span className="text-blue-300">rect</span>
+              {"."}
+              <span className="text-blue-300">left</span>
+              {" + "}
+              <span className="text-blue-300">rect</span>
+              {"."}
+              <span className="text-blue-300">width</span>
+              {" / "}
+              <span className="text-orange-400">2</span>
+              {"\n    });\n  }\n}, ["}
+              <span className="text-blue-300">showTooltip</span>
+              {"]); "}
+              {/* คำนวณตำแหน่งใหม่เมื่อแสดง tooltip */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Demo 4: Scroll Position */}
@@ -501,14 +629,40 @@ useLayoutEffect(() => {
           </p>
         </div>
 
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useLayoutEffect(() => {
-  if (scrollRef.current) {
-    // Scroll to bottom ทันที ก่อนเบราว์เซอร์ paint
-    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }
-}, [scrollCount]); // Scroll เมื่อมีข้อความเพิ่ม`}</pre>
-        </div>
+        <TerminalUI
+          fileName="AutoScroll.tsx"
+          name="Auto Scroll with useLayoutEffect"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">scrollRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n    "}
+              {/* Scroll to bottom ทันที ก่อนเบราว์เซอร์ paint */}
+              {"\n    "}
+              <span className="text-blue-300">scrollRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-blue-300">scrollTop</span>
+              {" = "}
+              <span className="text-blue-300">scrollRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-blue-300">scrollHeight</span>
+              {";\n  }\n}, ["}
+              <span className="text-blue-300">scrollCount</span>
+              {"]); "}
+              {/* Scroll เมื่อมีข้อความเพิ่ม */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       <Divider />
@@ -623,41 +777,122 @@ useLayoutEffect(() => {
 
       {/* Syntax Summary */}
       <Card title="📖 สรุปรูปแบบการใช้งาน" className="mb-4">
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`import { useLayoutEffect, useRef } from 'react';
-
-function MyComponent() {
-  const elementRef = useRef(null);
-
-  // Basic usage
-  useLayoutEffect(() => {
-    // Code รันก่อน browser paint
-    console.log('Running before paint');
-    
-    return () => {
-      // Cleanup
-    };
-  }, []);
-
-  // Measure DOM element
-  useLayoutEffect(() => {
-    if (elementRef.current) {
-      const rect = elementRef.current.getBoundingClientRect();
-      console.log('Width:', rect.width);
-    }
-  }, []);
-
-  // Position element based on another
-  useLayoutEffect(() => {
-    if (elementRef.current) {
-      elementRef.current.style.top = '100px';
-      elementRef.current.style.left = '200px';
-    }
-  }, [dependency]);
-
-  return <div ref={elementRef}>Content</div>;
-}`}</pre>
-        </div>
+        <TerminalUI
+          fileName="UseLayoutEffectPatterns.tsx"
+          name="Common Patterns"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">import</span>
+              {" { "}
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {", "}
+              <span className="text-yellow-300">useRef</span>
+              {" } "}
+              <span className="text-pink-400">from</span>{" "}
+              <span className="text-green-400">&apos;react&apos;</span>
+              {";\n\n"}
+              <span className="text-pink-400">function</span>{" "}
+              <span className="text-yellow-300">MyComponent</span>
+              {"() {\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">elementRef</span>
+              {" = "}
+              <span className="text-yellow-300">useRef</span>
+              {"("}
+              <span className="text-orange-400">null</span>
+              {");\n\n  "}
+              {/* Basic usage */}
+              {"\n  "}
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n    "}
+              {/* Code รันก่อน browser paint */}
+              {"\n    "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">
+                &apos;Running before paint&apos;
+              </span>
+              {");\n    \n    "}
+              <span className="text-pink-400">return</span>
+              {" () => {\n      "}
+              {/* Cleanup */}
+              {"\n    };\n  }, []);\n\n  "}
+              {/* Measure DOM element */}
+              {"\n  "}
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n    "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">elementRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n      "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">rect</span>
+              {" = "}
+              <span className="text-blue-300">elementRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-yellow-300">getBoundingClientRect</span>
+              {"();\n      "}
+              <span className="text-blue-300">console</span>
+              {"."}
+              <span className="text-yellow-300">log</span>
+              {"("}
+              <span className="text-green-400">&apos;Width:&apos;</span>
+              {", "}
+              <span className="text-blue-300">rect</span>
+              {"."}
+              <span className="text-blue-300">width</span>
+              {");\n    }\n  }, []);\n\n  "}
+              {/* Position element based on another */}
+              {"\n  "}
+              <span className="text-yellow-300">useLayoutEffect</span>
+              {"(() => {\n    "}
+              <span className="text-pink-400">if</span>
+              {" ("}
+              <span className="text-blue-300">elementRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {") {\n      "}
+              <span className="text-blue-300">elementRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-blue-300">style</span>
+              {"."}
+              <span className="text-blue-300">top</span>
+              {" = "}
+              <span className="text-green-400">&apos;100px&apos;</span>
+              {";\n      "}
+              <span className="text-blue-300">elementRef</span>
+              {"."}
+              <span className="text-blue-300">current</span>
+              {"."}
+              <span className="text-blue-300">style</span>
+              {"."}
+              <span className="text-blue-300">left</span>
+              {" = "}
+              <span className="text-green-400">&apos;200px&apos;</span>
+              {";\n    }\n  }, ["}
+              <span className="text-blue-300">dependency</span>
+              {"]);\n\n  "}
+              <span className="text-pink-400">return</span>
+              {" <"}
+              <span className="text-blue-300">div</span>{" "}
+              <span className="text-blue-300">ref</span>
+              {"={"}
+              <span className="text-blue-300">elementRef</span>
+              {"}>Content</"}
+              <span className="text-blue-300">div</span>
+              {">;\n}"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* Warning Box */}

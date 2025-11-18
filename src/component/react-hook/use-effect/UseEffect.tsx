@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Message } from "primereact/message";
 import { Divider } from "primereact/divider";
+import { TerminalUI } from "../../ui/TerminalUI";
 
 interface User {
   id: number;
@@ -158,11 +159,20 @@ export const UseEffectHookExample = () => {
             (ตัวเลขนี้จะเพิ่มขึ้นทุกครั้งที่คอมโพเนนต์ render)
           </p>
         </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useEffect(() => {
-  setRenderCount(prev => prev + 1);
-}); // ⚠️ ไม่มี dependency array`}</pre>
-        </div>
+        <TerminalUI fileName="NoDepEffect.tsx" name="useEffect No Dependencies">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useEffect</span>(() {`=> {\n`}
+              {"  "}
+              <span className="text-blue-300">setRenderCount</span>(
+              <span className="text-blue-300">prev</span> {`=> `}
+              <span className="text-blue-300">prev</span> +{" "}
+              <span className="text-orange-400">1</span>);
+              {"\n}); "}
+              <span className="text-gray-500">{`// ⚠️ ไม่มี dependency array`}</span>
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* ตัวอย่างที่ 2: Empty Dependencies */}
@@ -181,13 +191,35 @@ export const UseEffectHookExample = () => {
           <p className="font-bold">Component mounted at:</p>
           <p className="text-purple-600">{mountTime}</p>
         </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useEffect(() => {
-  const time = new Date().toLocaleString('th-TH');
-  setMountTime(time);
-  console.log('Component mounted at:', time);
-}, []); // ✅ Empty array = รันครั้งเดียว`}</pre>
-        </div>
+        <TerminalUI
+          fileName="MountEffect.tsx"
+          name="useEffect Empty Dependencies"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useEffect</span>(() {`=> {\n`}
+              {"  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">time</span> ={" "}
+              <span className="text-pink-400">new</span>{" "}
+              <span className="text-yellow-300">Date</span>().
+              <span className="text-yellow-300">toLocaleString</span>(
+              <span className="text-green-400">&apos;th-TH&apos;</span>);
+              {"\n  "}
+              <span className="text-blue-300">setMountTime</span>(
+              <span className="text-blue-300">time</span>);
+              {"\n  "}
+              <span className="text-blue-300">console</span>.
+              <span className="text-yellow-300">log</span>(
+              <span className="text-green-400">
+                &apos;Component mounted at:&apos;
+              </span>
+              , <span className="text-blue-300">time</span>);
+              {"\n}, []); "}
+              <span className="text-gray-500">{`// ✅ Empty array = รันครั้งเดียว`}</span>
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* ตัวอย่างที่ 3: Fetch Data */}
@@ -212,19 +244,42 @@ export const UseEffectHookExample = () => {
             </div>
           ) : null}
         </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useEffect(() => {
-  const fetchUser = async () => {
-    setLoading(true);
-    const response = await fetch('/api/user');
-    const data = await response.json();
-    setUser(data);
-    setLoading(false);
-  };
-  
-  fetchUser();
-}, []); // ดึงข้อมูลครั้งเดียวตอน mount`}</pre>
-        </div>
+        <TerminalUI fileName="FetchDataEffect.tsx" name="useEffect Fetch Data">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useEffect</span>(() {`=> {\n`}
+              {"  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">fetchUser</span> ={" "}
+              <span className="text-pink-400">async</span> () {`=> {\n`}
+              {"    "}
+              <span className="text-blue-300">setLoading</span>(
+              <span className="text-orange-400">true</span>);
+              {"\n    "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">response</span> ={" "}
+              <span className="text-pink-400">await</span>{" "}
+              <span className="text-yellow-300">fetch</span>(
+              <span className="text-green-400">&apos;/api/user&apos;</span>);
+              {"\n    "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-blue-300">data</span> ={" "}
+              <span className="text-pink-400">await</span>{" "}
+              <span className="text-blue-300">response</span>.
+              <span className="text-yellow-300">json</span>();
+              {"\n    "}
+              <span className="text-blue-300">setUser</span>(
+              <span className="text-blue-300">data</span>);
+              {"\n    "}
+              <span className="text-blue-300">setLoading</span>(
+              <span className="text-orange-400">false</span>);
+              {"\n  };\n  \n  "}
+              <span className="text-yellow-300">fetchUser</span>();
+              {"\n}, []); "}
+              <span className="text-gray-500">{`// ดึงข้อมูลครั้งเดียวตอน mount`}</span>
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* ตัวอย่างที่ 4: Specific Dependencies */}
@@ -249,15 +304,37 @@ export const UseEffectHookExample = () => {
           </div>
           <p className="text-purple-600 font-semibold">{countMessage}</p>
         </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useEffect(() => {
-  if (count > 0) {
-    setCountMessage(\`คุณได้กดปุ่มไปแล้ว \${count} ครั้ง\`);
-  } else {
-    setCountMessage('ยังไม่ได้กดปุ่ม');
-  }
-}, [count]); // รันเมื่อ count เปลี่ยน`}</pre>
-        </div>
+        <TerminalUI
+          fileName="DependencyEffect.tsx"
+          name="useEffect with Dependencies"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useEffect</span>(() {`=> {\n`}
+              {"  "}
+              <span className="text-pink-400">if</span> (
+              <span className="text-blue-300">count</span> {">"}{" "}
+              <span className="text-orange-400">0</span>) {"{\n    "}
+              <span className="text-blue-300">setCountMessage</span>(
+              <span className="text-green-400">`คุณได้กดปุ่มไปแล้ว $</span>
+              {"{"}
+              <span className="text-blue-300">count</span>
+              {"}"}
+              <span className="text-green-400"> ครั้ง`</span>);
+              {"\n  } "}
+              <span className="text-pink-400">else</span> {"{\n    "}
+              <span className="text-blue-300">setCountMessage</span>(
+              <span className="text-green-400">
+                &apos;ยังไม่ได้กดปุ่ม&apos;
+              </span>
+              );
+              {"\n  }\n}, ["}
+              <span className="text-blue-300">count</span>
+              {"]); "}
+              <span className="text-gray-500">{`// รันเมื่อ count เปลี่ยน`}</span>
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* ตัวอย่างที่ 5: Cleanup Function */}
@@ -310,6 +387,40 @@ export const UseEffectHookExample = () => {
   };
 }, [isTimerRunning]); // รันเมื่อ isTimerRunning เปลี่ยน`}</pre>
         </div>
+        <TerminalUI fileName="CleanupEffect.tsx" name="useEffect with Cleanup">
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-yellow-300">useEffect</span>(() {`=> {\n`}
+              {"  "}
+              <span className="text-pink-400">let</span>{" "}
+              <span className="text-blue-300">interval</span> ={" "}
+              <span className="text-orange-400">null</span>;{"\n  \n  "}
+              <span className="text-pink-400">if</span> (
+              <span className="text-blue-300">isTimerRunning</span>) {"{\n    "}
+              <span className="text-blue-300">interval</span> ={" "}
+              <span className="text-yellow-300">setInterval</span>(() {`=> {\n`}
+              {"      "}
+              <span className="text-blue-300">setSeconds</span>(
+              <span className="text-blue-300">prev</span> {`=> `}
+              <span className="text-blue-300">prev</span> +{" "}
+              <span className="text-orange-400">1</span>);
+              {"\n    }, "}
+              <span className="text-orange-400">1000</span>);
+              {"\n  }\n  \n  "}
+              <span className="text-gray-500">{`// Cleanup function`}</span>
+              {"\n  "}
+              <span className="text-pink-400">return</span> () {`=> {\n`}
+              {"    "}
+              <span className="text-pink-400">if</span> (
+              <span className="text-blue-300">interval</span>) {"{\n      "}
+              <span className="text-yellow-300">clearInterval</span>(
+              <span className="text-blue-300">interval</span>);
+              {"\n    }\n  };\n}, ["}
+              <span className="text-blue-300">isTimerRunning</span>
+              {"]);"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* ตัวอย่างที่ 6: Window Event Listeners */}
@@ -335,24 +446,59 @@ export const UseEffectHookExample = () => {
             (ลองปรับขนาดหน้าต่างเบราว์เซอร์)
           </p>
         </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useEffect(() => {
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  };
-  
-  handleResize(); // Set initial
-  window.addEventListener('resize', handleResize);
-  
-  // Cleanup - ลบ event listener
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
-}, []); // ติดตั้งครั้งเดียวตอน mount`}</pre>
-        </div>
+        <TerminalUI
+          fileName="WindowResizeEffect.tsx"
+          name="useEffect with Window Events"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">useEffect</span>
+              {"(() => {\n  "}
+              <span className="text-pink-400">const</span>{" "}
+              <span className="text-yellow-300">handleResize</span>
+              {" = () => {\n    "}
+              <span className="text-yellow-300">setWindowSize</span>
+              {"({\n      "}
+              <span className="text-blue-300">width</span>
+              {": "}
+              <span className="text-blue-300">window</span>
+              {"."}
+              <span className="text-blue-300">innerWidth</span>
+              {",\n      "}
+              <span className="text-blue-300">height</span>
+              {": "}
+              <span className="text-blue-300">window</span>
+              {"."}
+              <span className="text-blue-300">innerHeight</span>
+              {"\n    });\n  };\n  \n  "}
+              <span className="text-yellow-300">handleResize</span>
+              {"(); "}
+              {/* Set initial */}
+              {"\n  "}
+              <span className="text-blue-300">window</span>
+              {"."}
+              <span className="text-yellow-300">addEventListener</span>
+              {"("}
+              <span className="text-green-400">&apos;resize&apos;</span>
+              {", "}
+              <span className="text-blue-300">handleResize</span>
+              {");\n  \n  "}
+              {/* Cleanup - ลบ event listener */}
+              {"\n  "}
+              <span className="text-pink-400">return</span>
+              {" () => {\n    "}
+              <span className="text-blue-300">window</span>
+              {"."}
+              <span className="text-yellow-300">removeEventListener</span>
+              {"("}
+              <span className="text-green-400">&apos;resize&apos;</span>
+              {", "}
+              <span className="text-blue-300">handleResize</span>
+              {");\n  };\n}, []); "}
+              {/* ติดตั้งครั้งเดียวตอน mount */}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       {/* ตัวอย่างที่ 7: Document Title */}
@@ -371,16 +517,37 @@ export const UseEffectHookExample = () => {
             (ดูที่แท็บเบราว์เซอร์ด้านบน title จะเปลี่ยนตาม)
           </p>
         </div>
-        <div className="bg-gray-800 text-green-400 p-4 rounded font-mono text-sm overflow-x-auto">
-          <pre>{`useEffect(() => {
-  document.title = pageTitle;
-  
-  // Cleanup - คืนค่า title เดิม
-  return () => {
-    document.title = 'Courses Frontend Developer';
-  };
-}, [pageTitle]);`}</pre>
-        </div>
+        <TerminalUI
+          fileName="DocumentTitleEffect.tsx"
+          name="useEffect with Document Title"
+        >
+          <pre className="text-sm leading-relaxed">
+            <code>
+              <span className="text-pink-400">useEffect</span>
+              {"(() => {\n  "}
+              <span className="text-blue-300">document</span>
+              {"."}
+              <span className="text-blue-300">title</span>
+              {" = "}
+              <span className="text-blue-300">pageTitle</span>
+              {";\n  \n  "}
+              {/* Cleanup - คืนค่า title เดิม */}
+              {"\n  "}
+              <span className="text-pink-400">return</span>
+              {" () => {\n    "}
+              <span className="text-blue-300">document</span>
+              {"."}
+              <span className="text-blue-300">title</span>
+              {" = "}
+              <span className="text-green-400">
+                &apos;Courses Frontend Developer&apos;
+              </span>
+              {";\n  };\n}, ["}
+              <span className="text-blue-300">pageTitle</span>
+              {"]);"}
+            </code>
+          </pre>
+        </TerminalUI>
       </Card>
 
       <Divider />

@@ -3,6 +3,7 @@ import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Tag } from "primereact/tag";
 import { useState } from "react";
+import { TerminalUI } from "../../../ui/TerminalUI";
 
 export const UseStateBasicExample = () => {
   const [count, setCount] = useState(0);
@@ -35,11 +36,11 @@ export const UseStateBasicExample = () => {
         </h2>
 
         {/* 1. Simple Counter */}
-        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+        <div className="mb-6 p-4 bg-gray-50 rounded-lg mb-4">
           <h3 className="font-semibold text-gray-800 mb-3">
             1️⃣ Simple Counter
           </h3>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mb-4">
             <Button
               icon="pi pi-minus"
               onClick={handleDecrement}
@@ -60,10 +61,23 @@ export const UseStateBasicExample = () => {
               className="p-button-warning"
             />
           </div>
-          <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-            <code>{`const [count, setCount] = useState(0);
-        const handleIncrement = () => setCount(count + 1);`}</code>
-          </pre>
+          <TerminalUI fileName="Counter.tsx" name="Simple Counter">
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">const</span> [
+                <span className="text-blue-300">count</span>,{" "}
+                <span className="text-blue-300">setCount</span>] ={" "}
+                <span className="text-yellow-300">useState</span>(
+                <span className="text-orange-400">0</span>);{"\n"}
+                <span className="text-pink-400">const</span>{" "}
+                <span className="text-yellow-300">handleIncrement</span> = (){" "}
+                {`=> `}
+                <span className="text-blue-300">setCount</span>(
+                <span className="text-blue-300">count</span> +{" "}
+                <span className="text-orange-400">1</span>);
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
 
         {/* 2. String State */}
@@ -71,7 +85,7 @@ export const UseStateBasicExample = () => {
           <h3 className="font-semibold text-gray-800 mb-3">
             2️⃣ String State (Input)
           </h3>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 mb-4">
             <InputText
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -82,10 +96,28 @@ export const UseStateBasicExample = () => {
               Hello, <strong>{name || "Guest"}</strong>!
             </p>
           </div>
-          <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-            <code>{`const [name, setName] = useState("");
-        <InputText value={name} onChange={(e) => setName(e.target.value)} />`}</code>
-          </pre>
+          <TerminalUI fileName="StringState.tsx" name="String State">
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">const</span> [
+                <span className="text-blue-300">name</span>,{" "}
+                <span className="text-blue-300">setName</span>] ={" "}
+                <span className="text-yellow-300">useState</span>(
+                <span className="text-green-400">&quot;&quot;</span>);{"\n\n"}
+                {"<"}
+                <span className="text-blue-300">InputText</span>{" "}
+                <span className="text-blue-300">value</span>={`{`}
+                <span className="text-blue-300">name</span>
+                {`} `}
+                <span className="text-blue-300">onChange</span>={`{(`}
+                <span className="text-blue-300">e</span>) {`=> `}
+                <span className="text-blue-300">setName</span>(
+                <span className="text-blue-300">e</span>.
+                <span className="text-blue-300">target</span>.
+                <span className="text-blue-300">value</span>){`} />`}
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
 
         {/* 3. Boolean State */}
@@ -100,14 +132,26 @@ export const UseStateBasicExample = () => {
             className="p-button-info"
           />
           {isVisible && (
-            <div className="mt-3 p-4 bg-blue-100 border-l-4 border-blue-500 rounded">
+            <div className="mt-3 p-4 bg-blue-100 border-l-4 border-blue-500 rounded mb-4">
               <p className="text-blue-800">🎉 This content is now visible!</p>
             </div>
           )}
-          <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-            <code>{`const [isVisible, setIsVisible] = useState(false);
-        <Button onClick={() => setIsVisible(!isVisible)} />`}</code>
-          </pre>
+          <TerminalUI fileName="BooleanState.tsx" name="Boolean Toggle">
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">const</span> [
+                <span className="text-blue-300">isVisible</span>,{" "}
+                <span className="text-blue-300">setIsVisible</span>] ={" "}
+                <span className="text-yellow-300">useState</span>(
+                <span className="text-orange-400">false</span>);{"\n\n"}
+                {"<"}
+                <span className="text-blue-300">Button</span>{" "}
+                <span className="text-blue-300">onClick</span>={`{() => `}
+                <span className="text-blue-300">setIsVisible</span>(!
+                <span className="text-blue-300">isVisible</span>){`} />`}
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
 
         {/* 4. Array State */}
@@ -130,7 +174,7 @@ export const UseStateBasicExample = () => {
               className="p-button-success"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-4">
             {items.map((item, index) => (
               <Tag
                 key={index}
@@ -142,11 +186,33 @@ export const UseStateBasicExample = () => {
               />
             ))}
           </div>
-          <pre className="mt-3 bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto">
-            <code>{`const [items, setItems] = useState(["Apple", "Banana"]);
-        setItems([...items, newItem]); // Add
-        setItems(items.filter((_, i) => i !== index)); // Remove`}</code>
-          </pre>
+          <TerminalUI fileName="ArrayState.tsx" name="Array Management">
+            <pre className="text-sm leading-relaxed">
+              <code>
+                <span className="text-pink-400">const</span> [
+                <span className="text-blue-300">items</span>,{" "}
+                <span className="text-blue-300">setItems</span>] ={" "}
+                <span className="text-yellow-300">useState</span>([
+                <span className="text-green-400">&quot;Apple&quot;</span>,{" "}
+                <span className="text-green-400">&quot;Banana&quot;</span>]);
+                {"\n\n"}
+                <span className="text-gray-500">{`// Add item`}</span>
+                {"\n"}
+                <span className="text-blue-300">setItems</span>([...
+                <span className="text-blue-300">items</span>,{" "}
+                <span className="text-blue-300">newItem</span>]);{"\n\n"}
+                <span className="text-gray-500">{`// Remove item`}</span>
+                {"\n"}
+                <span className="text-blue-300">setItems</span>(
+                <span className="text-blue-300">items</span>.
+                <span className="text-yellow-300">filter</span>((
+                <span className="text-blue-300">_</span>,{" "}
+                <span className="text-blue-300">i</span>) {`=> `}
+                <span className="text-blue-300">i</span> !=={" "}
+                <span className="text-blue-300">index</span>));
+              </code>
+            </pre>
+          </TerminalUI>
         </div>
       </Card>
     </div>
