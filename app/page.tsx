@@ -39,6 +39,13 @@ export default function Home() {
       path: "/lodash",
       color: "bg-purple-500",
     },
+    {
+      title: "Browser Storage",
+      description: "Work with LocalStorage and SessionStorage in web apps",
+      icon: "💾",
+      path: "/browser-storage",
+      color: "bg-orange-500",
+    },
   ];
 
   return (
