@@ -1,10 +1,8 @@
 "use client";
-import { UseCallbackExample } from "@/src/component/react-hook/use-callback/UseCallback";
-import { UseEffectHookExample } from "@/src/component/react-hook/use-effect/UseEffect";
-import { UseLayoutEffectExample } from "@/src/component/react-hook/use-layout-effect/UseLayoutEffect";
-import { UseMemoExample } from "@/src/component/react-hook/use-memo/UseMemo";
-import UseRefExample from "@/src/component/react-hook/use-ref/UseRef";
-import { UseStateHookExample } from "@/src/component/react-hook/use-state/UseState";
+
+import { CookieExample } from "@/src/component/storage-browser/Cookie";
+import { LocalStorageExample } from "@/src/component/storage-browser/LocalStorage";
+import { SessionExample } from "@/src/component/storage-browser/Sesstion";
 import { useRouter } from "next/navigation";
 import { BreadCrumb } from "primereact/breadcrumb";
 import { TabView, TabPanel } from "primereact/tabview";
@@ -34,28 +32,16 @@ export default function Page() {
 
       <div className="card">
         <TabView>
-          <TabPanel header="useState">
-            <UseStateHookExample />
+          <TabPanel header="Cookie">
+            <CookieExample />
           </TabPanel>
 
-          <TabPanel header="useEffect">
-            <UseEffectHookExample />
+          <TabPanel header="Local Storage">
+            <LocalStorageExample />
           </TabPanel>
 
-          <TabPanel header="useLayoutEffect">
-            <UseLayoutEffectExample />
-          </TabPanel>
-
-          <TabPanel header="useMemo">
-            <UseMemoExample />
-          </TabPanel>
-
-          <TabPanel header="useCallback">
-            <UseCallbackExample />
-          </TabPanel>
-
-          <TabPanel header="useRef">
-            <UseRefExample />
+          <TabPanel header="Session Storage">
+            <SessionExample />
           </TabPanel>
         </TabView>
       </div>
