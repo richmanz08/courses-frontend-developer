@@ -7,6 +7,7 @@ import { Card } from "primereact/card";
 import { Message } from "primereact/message";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { TerminalUI } from "../ui/TerminalUI";
 
 interface StorageItem {
   key: string;
@@ -121,9 +122,90 @@ export const SessionExample = () => {
   return (
     <div className="space-y-6">
       <Message
+        className="mb-4"
         severity="info"
         text="sessionStorage stores data for one session only. Data is cleared when the page/tab is closed. Perfect for temporary data like form inputs, shopping carts during checkout, or wizard step data."
       />
+
+      <TerminalUI name="SessionStorage" fileName="SessionStorage.tsx">
+        <pre className="text-sm leading-relaxed">
+          <code>
+            <span className="text-gray-500">
+              {"// Store form data temporarily"}
+            </span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">formData</span> = {"{ "}
+            <span className="text-blue-300">firstName</span>:{" "}
+            <span className="text-green-400">&quot;Jane&quot;</span>,{" "}
+            <span className="text-blue-300">email</span>:{" "}
+            <span className="text-green-400">&quot;jane@example.com&quot;</span>
+            {" };\n"}
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">setItem</span>(
+            <span className="text-green-400">&quot;formData&quot;</span>,{" "}
+            <span className="text-yellow-300">JSON</span>.
+            <span className="text-yellow-300">stringify</span>(
+            <span className="text-blue-300">formData</span>));
+            {"\n\n"}
+            <span className="text-gray-500">{"// Read form data"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">formDataStr</span> ={" "}
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">getItem</span>(
+            <span className="text-green-400">&quot;formData&quot;</span>);
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">data</span> ={" "}
+            <span className="text-yellow-300">JSON</span>.
+            <span className="text-yellow-300">parse</span>(
+            <span className="text-blue-300">formDataStr</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Store simple value"}</span>
+            {"\n"}
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">setItem</span>(
+            <span className="text-green-400">&quot;currentStep&quot;</span>,{" "}
+            <span className="text-green-400">&quot;3&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Read value"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">step</span> ={" "}
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">getItem</span>(
+            <span className="text-green-400">&quot;currentStep&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Remove item"}</span>
+            {"\n"}
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">removeItem</span>(
+            <span className="text-green-400">&quot;formData&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">
+              {"// Clear all (cleared on tab close)"}
+            </span>
+            {"\n"}
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">clear</span>();
+            {"\n\n"}
+            <span className="text-gray-500">{"// Check if key exists"}</span>
+            {"\n"}
+            <span className="text-pink-400">if</span> (
+            <span className="text-blue-300">sessionStorage</span>.
+            <span className="text-yellow-300">getItem</span>(
+            <span className="text-green-400">&quot;formData&quot;</span>) !=={" "}
+            <span className="text-orange-400">null</span>) {"{\n"}
+            {"  "}
+            <span className="text-blue-300">console</span>.
+            <span className="text-yellow-300">log</span>(
+            <span className="text-green-400">&quot;Form data exists&quot;</span>
+            );{"\n"}
+            {"}"}
+          </code>
+        </pre>
+      </TerminalUI>
 
       {/* Set Item Section */}
       <Card title="Set SessionStorage Item" className="mb-4">

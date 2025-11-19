@@ -7,6 +7,7 @@ import { Card } from "primereact/card";
 import { Message } from "primereact/message";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { TerminalUI } from "../ui/TerminalUI";
 
 interface StorageItem {
   key: string;
@@ -109,9 +110,85 @@ export const LocalStorageExample = () => {
   return (
     <div className="space-y-6">
       <Message
+        className="mb-4"
         severity="info"
         text="localStorage provides persistent storage with no expiration date. Data remains even after closing the browser. Maximum storage is typically 5-10MB. Perfect for storing user preferences and application state."
       />
+
+      <TerminalUI name="LocalStorage" fileName="LocalStorage.tsx">
+        <pre className="text-sm leading-relaxed">
+          <code>
+            <span className="text-gray-500">{"// Store simple value"}</span>
+            {"\n"}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">setItem</span>(
+            <span className="text-green-400">&quot;theme&quot;</span>,{" "}
+            <span className="text-green-400">&quot;dark&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Store complex object"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">user</span> = {"{ "}
+            <span className="text-blue-300">name</span>:{" "}
+            <span className="text-green-400">&quot;John&quot;</span>,{" "}
+            <span className="text-blue-300">email</span>:{" "}
+            <span className="text-green-400">&quot;john@example.com&quot;</span>
+            {" };\n"}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">setItem</span>(
+            <span className="text-green-400">&quot;user&quot;</span>,{" "}
+            <span className="text-yellow-300">JSON</span>.
+            <span className="text-yellow-300">stringify</span>(
+            <span className="text-blue-300">user</span>));
+            {"\n\n"}
+            <span className="text-gray-500">{"// Read value"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">theme</span> ={" "}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">getItem</span>(
+            <span className="text-green-400">&quot;theme&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Read and parse object"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">userStr</span> ={" "}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">getItem</span>(
+            <span className="text-green-400">&quot;user&quot;</span>);{"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">userData</span> ={" "}
+            <span className="text-yellow-300">JSON</span>.
+            <span className="text-yellow-300">parse</span>(
+            <span className="text-blue-300">userStr</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Remove item"}</span>
+            {"\n"}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">removeItem</span>(
+            <span className="text-green-400">&quot;theme&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Clear all"}</span>
+            {"\n"}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">clear</span>();
+            {"\n\n"}
+            <span className="text-gray-500">{"// Get number of items"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">count</span> ={" "}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-blue-300">length</span>;{"\n\n"}
+            <span className="text-gray-500">{"// Get key by index"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">key</span> ={" "}
+            <span className="text-blue-300">localStorage</span>.
+            <span className="text-yellow-300">key</span>(
+            <span className="text-orange-400">0</span>);
+          </code>
+        </pre>
+      </TerminalUI>
 
       {/* Set Item Section */}
       <Card title="Set LocalStorage Item" className="mb-4">

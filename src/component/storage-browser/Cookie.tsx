@@ -5,41 +5,8 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Message } from "primereact/message";
-
-// Cookie utility functions
-const cookieUtils = {
-  set: (name: string, value: string, days: number) => {
-    if (typeof window !== "undefined") {
-      const expires = new Date();
-      expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-      const cookieString = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-      const doc = document as Document;
-      doc.cookie = cookieString;
-    }
-  },
-  get: (name: string): string | null => {
-    if (typeof window === "undefined") return null;
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === " ") c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  },
-  delete: (name: string) => {
-    if (typeof window !== "undefined") {
-      const cookieString = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
-      const doc = document as Document;
-      doc.cookie = cookieString;
-    }
-  },
-  getAll: (): string => {
-    if (typeof window === "undefined") return "No cookies set";
-    return document.cookie || "No cookies set";
-  },
-};
+import { TerminalUI } from "../ui/TerminalUI";
+import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
 
 export const CookieExample = () => {
   const [cookieName, setCookieName] = useState("userPreference");
@@ -51,13 +18,28 @@ export const CookieExample = () => {
 
   // Function to refresh and display all cookies
   const refreshCookies = () => {
-    setCurrentCookies(cookieUtils.getAll());
+    const allCookies = getCookies();
+    if (
+      allCookies &&
+      typeof allCookies === "object" &&
+      !("then" in allCookies)
+    ) {
+      const cookieString = Object.entries(allCookies)
+        .map(([key, value]) => `${key}=${value}`)
+        .join("; ");
+      setCurrentCookies(cookieString || "No cookies set");
+    } else {
+      setCurrentCookies("No cookies set");
+    }
   };
 
   // Handle setting a cookie
   const handleSetCookie = () => {
     if (cookieName && cookieValue) {
-      cookieUtils.set(cookieName, cookieValue, parseInt(cookieDays) || 7);
+      const days = parseInt(cookieDays) || 7;
+      setCookie(cookieName, cookieValue, {
+        maxAge: days * 24 * 60 * 60, // Convert days to seconds
+      });
       setCookieValue("");
       refreshCookies();
     }
@@ -65,14 +47,14 @@ export const CookieExample = () => {
 
   // Handle reading a cookie
   const handleReadCookie = () => {
-    const value = cookieUtils.get(readCookieName);
-    setReadCookieValue(value);
+    const value = getCookie(readCookieName);
+    setReadCookieValue(value ? String(value) : null);
   };
 
   // Handle deleting a cookie
   const handleDeleteCookie = () => {
     if (readCookieName) {
-      cookieUtils.delete(readCookieName);
+      deleteCookie(readCookieName);
       setReadCookieValue(null);
       refreshCookies();
     }
@@ -81,9 +63,93 @@ export const CookieExample = () => {
   return (
     <div className="space-y-6">
       <Message
+        className="mb-4"
         severity="info"
         text="Cookies are small pieces of data stored in the browser. They persist across sessions and can have expiration dates. Commonly used for authentication, user preferences, and tracking."
       />
+
+      <TerminalUI name="Cookie with cookies-next" fileName="Cookie.tsx">
+        <pre className="text-sm leading-relaxed">
+          <code>
+            <span className="text-gray-500">
+              {"// Import from cookies-next"}
+            </span>
+            {"\n"}
+            <span className="text-pink-400">import</span> {"{ "}
+            <span className="text-yellow-300">getCookie</span>,{" "}
+            <span className="text-yellow-300">setCookie</span>,{" "}
+            <span className="text-yellow-300">deleteCookie</span>,{" "}
+            <span className="text-yellow-300">getCookies</span>
+            {" } "}
+            <span className="text-pink-400">from</span>{" "}
+            <span className="text-green-400">&quot;cookies-next&quot;</span>;
+            {"\n\n"}
+            <span className="text-gray-500">
+              {"// Set a cookie with options"}
+            </span>
+            {"\n"}
+            <span className="text-yellow-300">setCookie</span>(
+            <span className="text-green-400">&quot;userPreference&quot;</span>,{" "}
+            <span className="text-green-400">&quot;dark&quot;</span>, {"{\n"}
+            {"  "}
+            <span className="text-blue-300">maxAge</span>:{" "}
+            <span className="text-orange-400">7</span> *{" "}
+            <span className="text-orange-400">24</span> *{" "}
+            <span className="text-orange-400">60</span> *{" "}
+            <span className="text-orange-400">60</span>,{" "}
+            <span className="text-gray-500">{"// 7 days in seconds"}</span>
+            {"\n  "}
+            <span className="text-blue-300">path</span>:{" "}
+            <span className="text-green-400">&quot;/&quot;</span>,{"\n"}
+            {"});"}
+            {"\n\n"}
+            <span className="text-gray-500">{"// Get a cookie"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">preference</span> ={" "}
+            <span className="text-yellow-300">getCookie</span>(
+            <span className="text-green-400">&quot;userPreference&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Get all cookies"}</span>
+            {"\n"}
+            <span className="text-pink-400">const</span>{" "}
+            <span className="text-blue-300">allCookies</span> ={" "}
+            <span className="text-yellow-300">getCookies</span>();
+            {"\n"}
+            <span className="text-blue-300">console</span>.
+            <span className="text-yellow-300">log</span>(
+            <span className="text-blue-300">allCookies</span>);{" "}
+            <span className="text-gray-500">
+              {"// { userPreference: 'dark', ... }"}
+            </span>
+            {"\n\n"}
+            <span className="text-gray-500">{"// Delete a cookie"}</span>
+            {"\n"}
+            <span className="text-yellow-300">deleteCookie</span>(
+            <span className="text-green-400">&quot;userPreference&quot;</span>);
+            {"\n\n"}
+            <span className="text-gray-500">{"// Set with more options"}</span>
+            {"\n"}
+            <span className="text-yellow-300">setCookie</span>(
+            <span className="text-green-400">&quot;token&quot;</span>,{" "}
+            <span className="text-green-400">&quot;abc123&quot;</span>, {"{\n"}
+            {"  "}
+            <span className="text-blue-300">maxAge</span>:{" "}
+            <span className="text-orange-400">3600</span>,{" "}
+            <span className="text-gray-500">{"// 1 hour"}</span>
+            {"\n  "}
+            <span className="text-blue-300">path</span>:{" "}
+            <span className="text-green-400">&quot;/&quot;</span>,{"\n  "}
+            <span className="text-blue-300">secure</span>:{" "}
+            <span className="text-orange-400">true</span>,{" "}
+            <span className="text-gray-500">{"// HTTPS only"}</span>
+            {"\n  "}
+            <span className="text-blue-300">sameSite</span>:{" "}
+            <span className="text-green-400">&quot;strict&quot;</span>,{"\n"}
+            {"});"}
+          </code>
+        </pre>
+      </TerminalUI>
 
       {/* Set Cookie Section */}
       <Card title="Set Cookie" className="mb-4">
