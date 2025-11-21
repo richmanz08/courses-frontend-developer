@@ -1,4 +1,4 @@
-import { InformationBox } from "./informationBox/InformationBox";
+import { InformationBox } from "../ui/informationBox/InformationBox";
 
 interface CustomerDetailComponentProps {
   customerId: string;
