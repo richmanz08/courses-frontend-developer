@@ -46,6 +46,13 @@ export default function Home() {
       path: "/browser-storage",
       color: "bg-orange-500",
     },
+    {
+      title: "Component Decomposition",
+      description: "Learn how to break down UI into reusable components",
+      icon: "🧩",
+      path: "/component-decomposition",
+      color: "bg-teal-500",
+    },
   ];
 
   return (
