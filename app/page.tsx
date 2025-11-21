@@ -53,6 +53,14 @@ export default function Home() {
       path: "/component-decomposition",
       color: "bg-teal-500",
     },
+    {
+      title: "Example Customer Detail Page",
+      description:
+        "Build a detailed customer information page for show concept of component decomposition",
+      icon: "👤",
+      path: "/customer-detail/CUS0000123",
+      color: "bg-pink-500",
+    },
   ];
 
   return (

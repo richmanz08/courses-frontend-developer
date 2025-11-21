@@ -33,3 +33,15 @@ body {
 .p-menuitem-text {
   color: #344054;
 }
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
+  color: oklch(20.8% 0.042 265.755);
+}
