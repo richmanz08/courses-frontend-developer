@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { title } from "process";
 import { useState } from "react";
 
 export default function Home() {
@@ -60,6 +61,63 @@ export default function Home() {
       icon: "👤",
       path: "/customer-detail/CUS0000123",
       color: "bg-pink-500",
+    },
+    {
+      title: "Provider & Context",
+      description: "Manage global state using React Context and Providers",
+      icon: "🌐",
+      path: "/provider-context",
+      color: "bg-indigo-500",
+    },
+    {
+      title: "Tailwind CSS & Advanced Styling",
+      description:
+        "Style your applications with Tailwind CSS and advanced techniques",
+      icon: "🎨",
+      path: "/tailwind-css",
+      color: "bg-teal-500",
+    },
+    {
+      title: "Image optimization",
+      description: "Optimize images for faster loading and better performance",
+      icon: "🖼️",
+      path: "/image-optimization",
+      color: "bg-pink-500",
+    },
+    {
+      // * ฝึกการวิเคราะห์และออกแบบ response data จาก UI ให้กับ back-end
+      title: "Design API Response",
+      description:
+        "Analyze UI requirements and design effective API response structures",
+      icon: "🛠️",
+      path: "/design-api-response",
+      color: "bg-indigo-500",
+    },
+    {
+      // * ทำความเข้าใจ App Router และ API Routes  (Next Server)
+      title: "Next.js App Router & API Routes",
+      description: "Understand Next.js App Router and how to create API Routes",
+      icon: "🛣️",
+      path: "/next-app-router",
+      color: "bg-green-500",
+    },
+    {
+      // * เรียนรู้การใช้ React Query (@tanstack/react-query) เพื่อ Caching และ Revalidation Data
+      title: "React Query for Data Caching",
+      description:
+        "Learn to use React Query for efficient data caching and revalidation",
+      icon: "🔄",
+      path: "/react-query",
+      color: "bg-purple-500",
+    },
+    {
+      //* แนวคิดการแยก logic ของ code ที่เกี่ยวกับการ business logic ด้วย Custom Hooks
+      title: "Custom Hooks for Business Logic",
+      description:
+        "Learn to separate business logic using Custom Hooks in React",
+      icon: "🪝",
+      path: "/custom-hooks",
+      color: "bg-teal-500",
     },
   ];
 

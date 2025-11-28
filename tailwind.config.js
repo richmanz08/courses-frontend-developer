@@ -11,9 +11,9 @@ module.exports = {
   ],
   darkMode: "class",
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/component/**/*.{js,ts,jsx,tsx,mdx}", // รวมทุก component
+    // "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    // "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    // "./src/component/**/*.{js,ts,jsx,tsx,mdx}", // รวมทุก component
   ],
   plugins: [],
 };
