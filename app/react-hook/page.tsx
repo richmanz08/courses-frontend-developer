@@ -38,13 +38,13 @@ export default function Page() {
 
       <div className="card">
         <TabView>
-          <TabPanel header="useState">
+          {/* <TabPanel header="useState">
             <UseStateHookExample />
           </TabPanel>
 
           <TabPanel header="useEffect">
             <UseEffectHookExample />
-          </TabPanel>
+          </TabPanel> */}
 
           <TabPanel header="useLayoutEffect">
             {/* <UseLayoutEffectExample /> */}
