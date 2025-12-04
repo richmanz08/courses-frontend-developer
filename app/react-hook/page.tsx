@@ -1,8 +1,12 @@
 "use client";
 import { UseCallbackExample } from "@/src/component/react-hook/use-callback/UseCallback";
+import { UseCallBackUseCase } from "@/src/component/react-hook/use-callback/UseCase";
 import { UseEffectHookExample } from "@/src/component/react-hook/use-effect/UseEffect";
+import { UseLayoutEffectUseCase } from "@/src/component/react-hook/use-layout-effect/UseCase2";
 import { UseLayoutEffectExample } from "@/src/component/react-hook/use-layout-effect/UseLayoutEffect";
+import { UseMemoUseCase } from "@/src/component/react-hook/use-memo/UseCase";
 import { UseMemoExample } from "@/src/component/react-hook/use-memo/UseMemo";
+import { UseRefUseCase } from "@/src/component/react-hook/use-ref/UseCase";
 import UseRefExample from "@/src/component/react-hook/use-ref/UseRef";
 import { UseStateHookExample } from "@/src/component/react-hook/use-state/UseState";
 import { useRouter } from "next/navigation";
@@ -43,19 +47,23 @@ export default function Page() {
           </TabPanel>
 
           <TabPanel header="useLayoutEffect">
-            <UseLayoutEffectExample />
+            {/* <UseLayoutEffectExample /> */}
+            <UseLayoutEffectUseCase />
           </TabPanel>
 
           <TabPanel header="useMemo">
-            <UseMemoExample />
+            {/* <UseMemoExample /> */}
+            <UseMemoUseCase />
           </TabPanel>
 
           <TabPanel header="useCallback">
-            <UseCallbackExample />
+            {/* <UseCallbackExample /> */}
+            <UseCallBackUseCase />
           </TabPanel>
 
           <TabPanel header="useRef">
-            <UseRefExample />
+            {/* <UseRefExample /> */}
+            <UseRefUseCase />
           </TabPanel>
         </TabView>
       </div>
