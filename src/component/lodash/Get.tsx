@@ -47,6 +47,8 @@ export const GetLodashExample = () => {
   ];
 
   // Using lodash get - ดึงข้อมูล nested object อย่างปลอดภัย
+
+  // Bangkok
   const userName = get(user, "name");
   const userAge = get(user, "profile.age");
   const userCity = get(user, "profile.address.city");

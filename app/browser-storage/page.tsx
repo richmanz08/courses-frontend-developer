@@ -3,6 +3,7 @@
 import { CookieExample } from "@/src/component/storage-browser/Cookie";
 import { LocalStorageExample } from "@/src/component/storage-browser/LocalStorage";
 import { SessionExample } from "@/src/component/storage-browser/Sesstion";
+import { WhatDifference } from "@/src/component/storage-browser/WhatDiffernce";
 import { useRouter } from "next/navigation";
 import { BreadCrumb } from "primereact/breadcrumb";
 import { TabView, TabPanel } from "primereact/tabview";
@@ -31,6 +32,7 @@ export default function Page() {
       <BreadCrumb model={items} home={home} className="my-4" />
 
       <div className="card">
+        {/* <WhatDifference /> */}
         <TabView>
           <TabPanel header="Cookie">
             <CookieExample />
