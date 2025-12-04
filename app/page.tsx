@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { title } from "process";
 import { useState } from "react";
 
 export default function Home() {
@@ -66,7 +65,7 @@ export default function Home() {
       title: "Provider & Context",
       description: "Manage global state using React Context and Providers",
       icon: "🌐",
-      path: "/provider-context",
+      path: "/context-provider",
       color: "bg-indigo-500",
     },
     {

@@ -15,7 +15,7 @@ export const ComponentAndProps: React.FC = () => {
   const {
     control,
     handleSubmit,
-    getValues,
+    watch,
     formState: { isValid },
   } = useForm<EmployeeForm>({
     defaultValues: {
@@ -43,9 +43,10 @@ export const ComponentAndProps: React.FC = () => {
     <div className="">
       <TerminalUI name="Components and props" fileName="ComponentAndProps.tsx">
         <div className="flex flex-col gap-4 p-4 ">
-          <Information name={getValues("name")} />
+          <Information name={watch("name")} />
           <InformationForm control={control} />
           <InformationSubmitFooter
+            name={watch("name")}
             disabled={!isValid}
             onSave={handleSubmit(onSave)}
             createdBy={createdBy}

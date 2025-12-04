@@ -1,5 +1,6 @@
 "use client";
-import { ComponentAndProps } from "@/src/component/component-and-props/ComponentAndProps";
+
+import { ComponentAndProps } from "@/src/component/context-provider/ComponentAndProps";
 import { useRouter } from "next/navigation";
 import { BreadCrumb } from "primereact/breadcrumb";
 
@@ -12,8 +13,8 @@ export default function Page() {
       command: () => router.push("/"),
     },
     {
-      label: "Component and Props",
-      command: () => router.push("/component-and-props"),
+      label: "Context & Provider",
+      command: () => router.push("/context-provider"),
     },
   ];
 

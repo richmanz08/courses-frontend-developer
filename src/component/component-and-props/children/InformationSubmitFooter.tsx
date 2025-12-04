@@ -5,12 +5,13 @@ import { CreatedBy } from "./CreatedBy";
 interface InformationSubmitFooterProps {
   disabled: boolean;
   createdBy: string;
+  name: string;
   onSave: () => void;
 }
 
 export const InformationSubmitFooter: React.FC<
   InformationSubmitFooterProps
-> = ({ onSave, disabled, createdBy }) => {
+> = ({ onSave, disabled, createdBy, name }) => {
   return (
     <div>
       <h1 className="my-2">Footer form submit</h1>
@@ -20,7 +21,7 @@ export const InformationSubmitFooter: React.FC<
         severity="success"
         className="w-full"
       >
-        Save
+        Save {name}
       </Button>
       <CreatedBy createdBy={createdBy} />
     </div>
