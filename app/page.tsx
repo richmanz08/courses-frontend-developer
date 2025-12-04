@@ -55,11 +55,11 @@ export default function Home() {
       color: "bg-teal-500",
     },
     {
-      title: "Example Customer Detail Page",
+      title: "Component and Props",
       description:
-        "Build a detailed customer information page for show concept of component decomposition",
+        "Understand React components and how to pass data with props",
       icon: "👤",
-      path: "/customer-detail/CUS0000123",
+      path: "/component-and-props",
       color: "bg-pink-500",
     },
     {

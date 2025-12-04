@@ -2,6 +2,7 @@
 
 import React from "react";
 import { TerminalUI } from "../ui/TerminalUI";
+import { Button } from "primereact/button";
 
 interface TypeScriptBasicProps {
   title: string;
@@ -43,6 +44,7 @@ export const TypeScriptBasicComponent: React.FC<TypeScriptBasicProps> = ({
     name: "Alice",
     role: UserRole.ADMIN,
     status: "active",
+    // phone: "123-456-7890",
     address: {
       street: "123 Main St",
       city: "Wonderland",
