@@ -10,6 +10,7 @@ import { useState } from "react";
 
 export const ComponentAndProps: React.FC = () => {
   const [employees, setEmployees] = useState<EmployeeData[]>([]);
+  const createdBy = "CPMatch";
 
   const {
     control,
@@ -47,6 +48,7 @@ export const ComponentAndProps: React.FC = () => {
           <InformationSubmitFooter
             disabled={!isValid}
             onSave={handleSubmit(onSave)}
+            createdBy={createdBy}
           />
         </div>
       </TerminalUI>

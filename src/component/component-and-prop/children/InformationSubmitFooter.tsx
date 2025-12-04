@@ -1,14 +1,16 @@
 import { Button } from "primereact/button";
 import React from "react";
+import { CreatedBy } from "./CreatedBy";
 
 interface InformationSubmitFooterProps {
   disabled: boolean;
+  createdBy: string;
   onSave: () => void;
 }
 
 export const InformationSubmitFooter: React.FC<
   InformationSubmitFooterProps
-> = ({ onSave, disabled }) => {
+> = ({ onSave, disabled, createdBy }) => {
   return (
     <div>
       <h1 className="my-2">Footer form submit</h1>
@@ -20,6 +22,7 @@ export const InformationSubmitFooter: React.FC<
       >
         Save
       </Button>
+      <CreatedBy createdBy={createdBy} />
     </div>
   );
 };
