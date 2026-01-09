@@ -69,43 +69,43 @@ const UseMemoUseCaseNoOptimized: React.FC = () => {
 };
 
 // after using useMemo
-// const UseMemoUseCaseOptimized: React.FC = () => {
-//   const [carList, setCarList] = useState<CarData[]>(cars);
-//   const [count, setCount] = useState(0);
-//   const [selectedCar, setSelectedCar] = useState<SelectItem | null>(null);
+const UseMemoUseCaseOptimized: React.FC = () => {
+  const [carList, setCarList] = useState<CarData[]>(cars);
+  const [count, setCount] = useState(0);
+  const [selectedCar, setSelectedCar] = useState<SelectItem | null>(null);
 
-//   const options = useMemo(() => {
-//     const opts = map(carList, (car) => ({
-//       value: car.carCode,
-//       label: car.carName,
-//     }));
-//     console.log("🌽 Mapping cars to options... worked", opts);
-//     return opts;
-//   }, [carList]);
-//   return (
-//     <div>
-//       <TerminalUI name="UseMemo Use Case Optimized" fileName="UseCase.tsx">
-//         <h1>UseMemo Use Case Optimized</h1>
-//         <Button
-//           onClick={() => setCarList((prev) => prev.slice(1, prev.length))}
-//         >
-//           Removed car item on top item
-//         </Button>
-//         <Dropdown
-//           value={selectedCar}
-//           onChange={(e) => setSelectedCar(e.value)}
-//           options={options}
-//           optionLabel="label"
-//           placeholder="Select a Car"
-//           className="w-full md:w-14rem"
-//         />
-//         <Button className="!mt-2" onClick={() => setCount(count + 1)}>
-//           Count: {count}
-//         </Button>
-//       </TerminalUI>
-//     </div>
-//   );
-// };
+  const options = useMemo(() => {
+    const opts = map(carList, (car) => ({
+      value: car.carCode,
+      label: car.carName,
+    }));
+    console.log("🌽 Mapping cars to options... worked", opts);
+    return opts;
+  }, [carList]);
+  return (
+    <div>
+      <TerminalUI name="UseMemo Use Case Optimized" fileName="UseCase.tsx">
+        <h1>UseMemo Use Case Optimized</h1>
+        <Button
+          onClick={() => setCarList((prev) => prev.slice(1, prev.length))}
+        >
+          Removed car item on top item
+        </Button>
+        <Dropdown
+          value={selectedCar}
+          onChange={(e) => setSelectedCar(e.value)}
+          options={options}
+          optionLabel="label"
+          placeholder="Select a Car"
+          className="w-full md:w-14rem"
+        />
+        <Button className="!mt-2" onClick={() => setCount(count + 1)}>
+          Count: {count}
+        </Button>
+      </TerminalUI>
+    </div>
+  );
+};
 
 export const UseMemoUseCase: React.FC = () => {
   return (
