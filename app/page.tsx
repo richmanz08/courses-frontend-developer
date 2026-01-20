@@ -73,14 +73,14 @@ export default function Home() {
       description:
         "Style your applications with Tailwind CSS and advanced techniques",
       icon: "🎨",
-      path: "/tailwind-css",
+      path: "/tailwind-advanced",
       color: "bg-teal-500",
     },
     {
       title: "Image optimization",
       description: "Optimize images for faster loading and better performance",
       icon: "🖼️",
-      path: "/image-optimization",
+      path: "/image-optimize",
       color: "bg-pink-500",
     },
     {
