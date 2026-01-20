@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
         hostname: "petapixel.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "my-que-s3-bucket.s3.ap-southeast-2.amazonaws.com",
+        pathname: "/**",
+      },
     ],
   },
 };
