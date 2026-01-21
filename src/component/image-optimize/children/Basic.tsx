@@ -7,6 +7,13 @@ export const Basic: React.FC = () => {
   const sampleImage = "https://picsum.photos/800/600";
   return (
     <div className="space-y-6">
+      <div className="bg-yellow-100 border-l-4 border-yellow-400 p-4 rounded mb-4 text-yellow-900 text-sm">
+        <strong>💡 Next.js Image Cache:</strong> <br />
+        Next.js <code>&lt;Image&gt;</code> จะ cache รูปไว้ที่ <b>ฝั่ง server</b>{" "}
+        (image optimizer) ไม่ใช่ที่ client
+        <br />
+        ถ้าใช้ URL เดิม จะได้รูปเดิมเสมอ (จนกว่าจะ clear cache หรือเปลี่ยน URL)
+      </div>
       {/* Comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Normal img tag */}
@@ -99,6 +106,7 @@ export const Basic: React.FC = () => {
                 <li>Responsive images</li>
                 <li>Modern formats (WebP, AVIF)</li>
                 <li>No CLS (Layout Shift)</li>
+                <li>Cache image</li>
               </ul>
             </div>
           </div>
