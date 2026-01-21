@@ -49,16 +49,6 @@ export const Basic: React.FC = () => {
                 className="w-full h-auto"
               />
             </div>
-
-            <div className="bg-red-50 p-3 rounded">
-              <h4 className="font-semibold text-red-800 mb-2">❌ ข้อเสีย:</h4>
-              <ul className="text-sm text-red-700 space-y-1 list-disc ml-4">
-                <li>ไม่มี lazy loading</li>
-                <li>ไม่มี automatic resizing</li>
-                <li>ไม่มี modern format (WebP)</li>
-                <li>CLS (Layout Shift) problems</li>
-              </ul>
-            </div>
           </div>
         </Card>
 
@@ -97,17 +87,6 @@ export const Basic: React.FC = () => {
                 className="w-full h-auto"
                 priority
               />
-            </div>
-
-            <div className="bg-green-50 p-3 rounded">
-              <h4 className="font-semibold text-green-800 mb-2">✅ ข้อดี:</h4>
-              <ul className="text-sm text-green-700 space-y-1 list-disc ml-4">
-                <li>Automatic lazy loading</li>
-                <li>Responsive images</li>
-                <li>Modern formats (WebP, AVIF)</li>
-                <li>No CLS (Layout Shift)</li>
-                <li>Cache image</li>
-              </ul>
             </div>
           </div>
         </Card>
