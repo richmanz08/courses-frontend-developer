@@ -2,7 +2,6 @@ import { Badge } from "primereact/badge";
 import { Card } from "primereact/card";
 import { TerminalUI } from "../../ui/TerminalUI";
 import Image from "next/image";
-import { Message } from "primereact/message";
 
 export const Basic: React.FC = () => {
   const sampleImage = "https://picsum.photos/800/600";
@@ -105,12 +104,6 @@ export const Basic: React.FC = () => {
           </div>
         </Card>
       </div>
-
-      {/* Info */}
-      <Message
-        severity="info"
-        text="Next.js Image component จะทำการ optimize รูปภาพอัตโนมัติ และแปลงเป็น modern format เช่น WebP"
-      />
     </div>
   );
 };

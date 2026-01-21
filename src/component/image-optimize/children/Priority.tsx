@@ -5,6 +5,7 @@ export const Priority: React.FC = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Priority Image Loaded</h2>
+      <p className="text-red-600">เว็บพวกแสดงรายการสินค้า เยอะๆ นิยมใช้</p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Non amet
       asperiores omnis assumenda distinctio odit placeat architecto, magnam qui
       iusto dolore eaque. Impedit exercitationem asperiores quos facere dicta,

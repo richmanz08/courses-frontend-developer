@@ -1,6 +1,7 @@
 # 🖼️ Next.js Image Optimization
 
 ## 📚 สารบัญ
+
 1. [ข้อดีของการใช้ Next.js `<Image>`](#ข้อดีของการใช้-nextjs-image)
 2. [เปรียบเทียบ `<img>` vs `<Image>`](#เปรียบเทียบ-img-vs-image)
 3. [ทำไมต้อง set `remotePatterns` ใน next.config.ts](#ทำไมต้อง-set-remotepatterns)
@@ -12,6 +13,7 @@
 ## ✨ ข้อดีของการใช้ Next.js `<Image>`
 
 ### 1. 🚀 **Automatic Image Optimization**
+
 - แปลงรูปเป็น **modern formats** (WebP, AVIF) อัตโนมัติ
 - Resize รูปตาม device size
 - Compress รูปโดยไม่ลดคุณภาพมาก
@@ -19,8 +21,8 @@
 
 ```tsx
 // ✅ Next.js จะสร้าง multiple versions อัตโนมัติ
-<Image 
-  src="/photo.jpg"  // Original: 5MB
+<Image
+  src="/photo.jpg" // Original: 5MB
   width={800}
   height={600}
   alt="Photo"
@@ -34,6 +36,7 @@
 ```
 
 ### 2. ⚡ **Lazy Loading**
+
 - โหลดรูปเมื่อ scroll มาใกล้เท่านั้น (default)
 - ประหยัด bandwidth
 - Page load เร็วขึ้น
@@ -53,6 +56,7 @@
 ```
 
 ### 3. 🎯 **No Layout Shift (CLS Prevention)**
+
 - กำหนด width/height ไว้ล่วงหน้า
 - ป้องกันการ "กระโดด" ของ content
 - ปรับปรุง Core Web Vitals
@@ -63,23 +67,24 @@
 // Browser ไม่รู้ขนาด → reserve space → รูปโหลด → layout shift!
 
 // ✅ No Layout Shift
-<Image 
-  src="/photo.jpg" 
-  width={800} 
+<Image
+  src="/photo.jpg"
+  width={800}
   height={600}  // Browser รู้ขนาดล่วงหน้า
   alt="Photo"
 />
 ```
 
 ### 4. 🔥 **Priority Loading**
+
 - ควบคุมว่ารูปไหนสำคัญ ต้องโหลดก่อน
 - ปรับปรุง LCP (Largest Contentful Paint)
 
 ```tsx
 // ✅ Hero image: โหลดทันที
-<Image 
-  src="/hero.jpg" 
-  width={1920} 
+<Image
+  src="/hero.jpg"
+  width={1920}
   height={1080}
   priority  // โหลดก่อนรูปอื่น
   alt="Hero"
@@ -90,11 +95,12 @@
 ```
 
 ### 5. 📱 **Responsive by Default**
+
 - ปรับขนาดตาม viewport อัตโนมัติ
 - ไม่ต้องเขียน media queries เอง
 
 ```tsx
-<Image 
+<Image
   src="/banner.jpg"
   width={1920}
   height={400}
@@ -106,6 +112,7 @@
 ```
 
 ### 6. 💾 **Built-in Caching**
+
 - Cache รูปที่ optimize แล้ว
 - ไม่ต้อง optimize ซ้ำ
 - ลด server load
@@ -114,17 +121,17 @@
 
 ## 📊 เปรียบเทียบ `<img>` vs `<Image>`
 
-| Feature | `<img>` | `<Image>` |
-|---------|---------|-----------|
-| **Optimization** | ❌ ไม่มี | ✅ อัตโนมัติ |
-| **Format** | ไฟล์ต้นฉบับ | WebP, AVIF |
-| **Lazy Loading** | ❌ ไม่มี | ✅ มี (default) |
-| **Responsive** | ต้องเขียนเอง | ✅ อัตโนมัติ |
-| **Layout Shift** | ⚠️ มีปัญหา | ✅ ไม่มีปัญหา |
-| **Priority** | ❌ ไม่มี | ✅ ตั้งค่าได้ |
-| **Cache** | ขึ้นกับ browser | ✅ Built-in |
-| **ขนาดไฟล์** | ใหญ่ | ✅ เล็กกว่า 50-70% |
-| **Performance** | ⚠️ แย่ | ✅ ดีมาก |
+| Feature          | `<img>`         | `<Image>`          |
+| ---------------- | --------------- | ------------------ |
+| **Optimization** | ❌ ไม่มี        | ✅ อัตโนมัติ       |
+| **Format**       | ไฟล์ต้นฉบับ     | WebP, AVIF         |
+| **Lazy Loading** | ❌ ไม่มี        | ✅ มี (default)    |
+| **Responsive**   | ต้องเขียนเอง    | ✅ อัตโนมัติ       |
+| **Layout Shift** | ⚠️ มีปัญหา      | ✅ ไม่มีปัญหา      |
+| **Priority**     | ❌ ไม่มี        | ✅ ตั้งค่าได้      |
+| **Cache**        | ขึ้นกับ browser | ✅ Built-in        |
+| **ขนาดไฟล์**     | ใหญ่            | ✅ เล็กกว่า 50-70% |
+| **Performance**  | ⚠️ แย่          | ✅ ดีมาก           |
 
 ### ตัวอย่างขนาดไฟล์:
 
@@ -150,6 +157,7 @@ Original JPEG: 2.5 MB
 ### 🎯 เหตุผลหลัก
 
 #### 1. **ความปลอดภัย (Security)**
+
 ```tsx
 // ❌ ถ้าไม่มี whitelist
 // คนอื่นสามารถใช้ server ของคุณโหลดรูปจากไหนก็ได้!
@@ -165,6 +173,7 @@ Original JPEG: 2.5 MB
 ```
 
 #### 2. **ประหยัดค่าใช้จ่าย (Cost Control)**
+
 ```
 สมมติถูก abuse:
 
@@ -179,11 +188,14 @@ Original JPEG: 2.5 MB
 ```
 
 #### 3. **ป้องกันการโจมตี (DDoS/Abuse Prevention)**
+
 ```javascript
 // Attack Example:
-while(true) {
+while (true) {
   // ส่ง request optimize รูปไม่หยุด
-  fetch(`/_next/image?url=https://huge-site.com/10mb-${Math.random()}.jpg&w=3840`);
+  fetch(
+    `/_next/image?url=https://huge-site.com/10mb-${Math.random()}.jpg&w=3840`,
+  );
 }
 
 // 💥 ผลลัพธ์:
@@ -193,6 +205,7 @@ while(true) {
 ```
 
 #### 4. **Performance & Monitoring**
+
 ```typescript
 // ✅ มี whitelist:
 // - รู้ว่ารูปมาจาก domains ไหนบ้าง
@@ -220,26 +233,26 @@ const nextConfig: NextConfig = {
         hostname: "cdn.example.com",
         pathname: "/**",
       },
-      
+
       // 2. AWS S3
       {
         protocol: "https",
         hostname: "my-bucket.s3.amazonaws.com",
         pathname: "/**",
       },
-      
+
       // 3. All S3 buckets (wildcard)
       {
         protocol: "https",
         hostname: "**.s3.**.amazonaws.com",
         pathname: "/**",
       },
-      
+
       // 4. Specific folder only
       {
         protocol: "https",
         hostname: "images.example.com",
-        pathname: "/public/**",  // เฉพาะ /public/*
+        pathname: "/public/**", // เฉพาะ /public/*
       },
     ],
   },
@@ -257,15 +270,15 @@ export function MyComponent() {
   return (
     <div>
       {/* Local Image */}
-      <Image 
-        src="/logo.png"  // ไฟล์ใน public/
+      <Image
+        src="/logo.png" // ไฟล์ใน public/
         width={200}
         height={100}
         alt="Logo"
       />
 
       {/* Remote Image (ต้องอยู่ใน whitelist) */}
-      <Image 
+      <Image
         src="https://cdn.example.com/photo.jpg"
         width={800}
         height={600}
@@ -273,7 +286,7 @@ export function MyComponent() {
       />
 
       {/* AWS S3 */}
-      <Image 
+      <Image
         src="https://my-bucket.s3.amazonaws.com/images/product.jpg"
         width={600}
         height={600}
@@ -296,34 +309,34 @@ import Image from "next/image";
 <Image src="/photo.jpg" width={800} height={600} alt="Photo" />
 
 // 2. ระบุ width และ height เสมอ
-<Image 
-  src="/photo.jpg" 
+<Image
+  src="/photo.jpg"
   width={800}   // ✅
   height={600}  // ✅
   alt="Photo"
 />
 
 // 3. ใช้ priority กับรูปสำคัญ (above the fold)
-<Image 
-  src="/hero.jpg" 
-  width={1920} 
+<Image
+  src="/hero.jpg"
+  width={1920}
   height={1080}
   priority  // ✅ Hero image
   alt="Hero"
 />
 
 // 4. ใส่ alt text ที่มีความหมาย
-<Image 
-  src="/product.jpg" 
-  width={600} 
+<Image
+  src="/product.jpg"
+  width={600}
   height={600}
   alt="Nike Air Max 2024 - White/Blue"  // ✅ Descriptive
 />
 
 // 5. ใช้ fill กับ container ที่มี position: relative
 <div className="relative w-full h-96">
-  <Image 
-    src="/banner.jpg" 
+  <Image
+    src="/banner.jpg"
     fill
     className="object-cover"  // ✅
     alt="Banner"
@@ -332,10 +345,10 @@ import Image from "next/image";
 
 // 6. เพิ่มเฉพาะ domains ที่คุณควบคุม
 remotePatterns: [
-  { 
-    protocol: "https", 
+  {
+    protocol: "https",
     hostname: "your-cdn.com",  // ✅ Your domain
-    pathname: "/**" 
+    pathname: "/**"
   },
 ]
 ```
@@ -376,8 +389,8 @@ remotePatterns: [
 
 // 2. Fill container
 <div className="relative w-full h-96">
-  <Image 
-    src="/photo.jpg" 
+  <Image
+    src="/photo.jpg"
     fill
     className="object-cover"
     alt="Photo"
@@ -385,7 +398,7 @@ remotePatterns: [
 </div>
 
 // 3. Responsive with sizes
-<Image 
+<Image
   src="/photo.jpg"
   width={1200}
   height={800}
@@ -400,26 +413,26 @@ remotePatterns: [
 
 ```tsx
 // 1. Priority (above the fold) - โหลดทันที
-<Image 
-  src="/hero.jpg" 
-  width={1920} 
+<Image
+  src="/hero.jpg"
+  width={1920}
   height={1080}
   priority
   alt="Hero"
 />
 
 // 2. Lazy (default) - โหลดเมื่อเลื่อนมาใกล้
-<Image 
-  src="/gallery.jpg" 
-  width={400} 
+<Image
+  src="/gallery.jpg"
+  width={400}
   height={300}
   alt="Gallery"
 />
 
 // 3. Placeholder blur
-<Image 
-  src="/photo.jpg" 
-  width={800} 
+<Image
+  src="/photo.jpg"
+  width={800}
   height={600}
   placeholder="blur"
   blurDataURL="data:image/jpeg;base64,..."
@@ -433,24 +446,24 @@ remotePatterns: [
 
 ```tsx
 // Cover: เต็ม container (อาจครอป)
-<Image 
-  src="/photo.jpg" 
+<Image
+  src="/photo.jpg"
   fill
   className="object-cover"
   alt="Cover"
 />
 
 // Contain: ไม่ครอป แต่อาจมีพื้นที่ว่าง
-<Image 
-  src="/photo.jpg" 
+<Image
+  src="/photo.jpg"
   fill
   className="object-contain"
   alt="Contain"
 />
 
 // Fill: ยืดเต็ม (อาจบิดเบี้ยว)
-<Image 
-  src="/photo.jpg" 
+<Image
+  src="/photo.jpg"
   fill
   className="object-fill"
   alt="Fill"
@@ -467,22 +480,22 @@ export default {
   images: {
     // Allowed domains
     remotePatterns: [...],
-    
+
     // Image formats (ordered by preference)
     formats: ['image/avif', 'image/webp'],
-    
+
     // Device sizes for responsive images
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    
+
     // Image sizes for srcset
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    
+
     // Minimum cache time (seconds)
     minimumCacheTTL: 60,
-    
+
     // Disable static imports optimization
     disableStaticImages: false,
-    
+
     // Allowed image sizes
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -495,6 +508,7 @@ export default {
 ## 🚀 Performance Tips
 
 ### 1. **Optimize Image Size**
+
 ```bash
 # ก่อนอัปโหลด:
 # - Resize ให้เหมาะสม (ไม่ต้องใช้ 4K สำหรับ thumbnail)
@@ -503,6 +517,7 @@ export default {
 ```
 
 ### 2. **Use Priority Wisely**
+
 ```tsx
 // ✅ เฉพาะ 1-2 รูปต่อหน้า
 <Image src="/hero.jpg" priority />
@@ -514,6 +529,7 @@ export default {
 ```
 
 ### 3. **Lazy Load Below the Fold**
+
 ```tsx
 // Above the fold
 <Image src="/hero.jpg" priority />
@@ -528,6 +544,7 @@ export default {
 ## 📝 สรุป
 
 ### **ทำไมต้องใช้ Next.js `<Image>`:**
+
 1. ✅ **Performance** - เร็วกว่า 50-70%
 2. ✅ **SEO** - Core Web Vitals ดีขึ้น
 3. ✅ **UX** - ไม่มี layout shift
@@ -535,12 +552,14 @@ export default {
 5. ✅ **Automatic** - ไม่ต้องทำอะไรมาก
 
 ### **ทำไมต้อง set remotePatterns:**
+
 1. 🔒 **Security** - ป้องกัน abuse
 2. 💰 **Cost Control** - ควบคุมค่าใช้จ่าย
 3. 🛡️ **Protection** - ป้องกันการโจมตี
 4. ⚡ **Performance** - Optimize cache
 
 ### **Migration Path:**
+
 ```tsx
 // Before
 <img src="https://example.com/photo.jpg" alt="Photo" />
@@ -548,9 +567,9 @@ export default {
 // After
 // 1. เพิ่ม domain ใน next.config.ts
 // 2. เปลี่ยนเป็น Image component
-<Image 
-  src="https://example.com/photo.jpg" 
-  width={800} 
+<Image
+  src="https://example.com/photo.jpg"
+  width={800}
   height={600}
   alt="Photo"
 />
