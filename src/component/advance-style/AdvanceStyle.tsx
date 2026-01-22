@@ -13,7 +13,7 @@ export const AdvanceStyle: React.FC = () => {
               {
                 key: "a",
                 value: "001",
-                label: "Facebook",
+                label: "Facebook Application",
                 iconName: "pi-facebook",
               },
               {
