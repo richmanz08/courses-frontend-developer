@@ -4,6 +4,7 @@ import { Basic } from "./children/Basic";
 import { Priority } from "./children/Priority";
 import { ImageLoading } from "./children/ImageLoading";
 import { ImageLoadFailed } from "./children/ImageLoadFailed";
+import { ImageCache } from "./children/ImageCache";
 
 export const ImageOptimize: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -40,6 +41,9 @@ export const ImageOptimize: React.FC = () => {
         </TabPanel>
         <TabPanel header="⏳ Loading Failed">
           <ImageLoadFailed />
+        </TabPanel>
+        <TabPanel header="🗄️ Image Cache">
+          <ImageCache />
         </TabPanel>
       </TabView>
     </div>
