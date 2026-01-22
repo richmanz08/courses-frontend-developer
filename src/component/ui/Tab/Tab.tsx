@@ -1,9 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import { findIndex, map } from "lodash";
+import { ActionButton, ButtonTabControl } from "./ButtonControl.tab";
+import { ButtonTab } from "./Button.tab";
+import { AnimatedBackground } from "./AnimateBackground.tab";
+import { ScrollContainer } from "./ScrollContainer";
 
 export interface ITabData {
-  iconsName?: string;
+  iconName?: string;
   value: string;
   label: string;
   key: string;
@@ -27,9 +31,6 @@ export const ResponsiveTabCustom: React.FC<ResponsiveTabCustomProps> = ({
     width: 0,
     left: 0,
   });
-
-  // Calculate active tab index for animation
-  const activeTabIndex = findIndex(tabList, (o) => o.key === activeKey);
 
   // Update background position and size based on active tab
   useEffect(() => {
@@ -107,19 +108,7 @@ export const ResponsiveTabCustom: React.FC<ResponsiveTabCustomProps> = ({
     };
   }, [activeKey]);
 
-  const mapIconTab = (iconName: string) => {
-    // Map iconName to PrimeReact pi-* icon class
-    const iconMap: Record<string, string> = {
-      DashboardLayout: "pi pi-home",
-      UserEditOutlined: "pi pi-user-edit",
-      GlobalPosition: "pi pi-globe",
-      Guard: "pi pi-shield",
-    };
-    const iconClass = iconMap[iconName] || "";
-    return iconClass ? <i className={iconClass + " text-lg"} /> : <></>;
-  };
-
-  const onClickChangeTab = (action: "prev" | "next") => {
+  const onClickChangeTab = (action: ActionButton) => {
     const index = findIndex(tabList, (o) => o.key === activeKey);
 
     if (action === "prev") {
@@ -133,65 +122,30 @@ export const ResponsiveTabCustom: React.FC<ResponsiveTabCustomProps> = ({
 
   return (
     <div className="relative flex w-full items-center gap-2">
-      {/* Left Arrow */}
-      <button
-        type="button"
-        onClick={() => onClickChangeTab("prev")}
-        className="absolute left-0 z-10 w-[44px] h-[48px] px-3 text-basegray-350 bg-[#E9ECF1] rounded-8 shadow-md"
-      >
-        <span className="text-2xl text-amber-500">‹</span>
-      </button>
-
-      {/* Scrollable Tabs */}
-      <div
-        ref={scrollContainerRef}
-        className="h-[48px] flex flex-1 gap-2 overflow-x-auto scroll-smooth p-1 mx-[54px] bg-[#E9ECF1] rounded-8 shadow-md justify-start sm:justify-center [&::-webkit-scrollbar]:hidden relative"
-        style={{
-          scrollbarWidth: "none" /* Firefox */,
-          msOverflowStyle: "none" /* Internet Explorer 10+ */,
-        }}
-      >
+      <ButtonTabControl type="prev" onClick={onClickChangeTab} />
+      <ScrollContainer ref={scrollContainerRef}>
         {map(tabList, (dt) => {
-          const { value, label, iconsName, key } = dt;
+          const { key, label, iconName } = dt;
           const isActive = activeKey === key;
           return (
-            <button
-              key={value}
-              ref={isActive ? activeTabRef : null}
-              onClick={() => onChange(key)}
-              className={`flex items-center gap-2 rounded-8 px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors duration-200 shrink-0 relative z-10`}
-            >
-              <p
-                color={isActive ? "white" : "default"}
-                className={`flex items-center gap-2 ${isActive ? "font-bold " : "text-gray-400"}`}
-              >
-                {mapIconTab(iconsName as string)}
-                {label}
-              </p>
-            </button>
+            <ButtonTab
+              key={key}
+              isActive={isActive}
+              iconName={iconName}
+              label={label}
+              onChange={() => onChange(key)}
+              activeTabRef={activeTabRef}
+              value={key}
+            />
           );
         })}
 
-        {/* Animated Background */}
-        {activeTabIndex >= 0 && backgroundStyle.width > 0 && (
-          <div
-            className="absolute top-1 bottom-1 bg-amber-500 rounded-8 shadow transition-all duration-300 ease-in-out z-0"
-            style={{
-              width: `${backgroundStyle.width}px`,
-              left: `${backgroundStyle.left}px`,
-            }}
-          />
-        )}
-      </div>
-
-      {/* Right Arrow */}
-      <button
-        type="button"
-        onClick={() => onClickChangeTab("next")}
-        className="absolute right-0 z-10 w-[44px] h-[48px] px-3 text-basegray-350 bg-[#E9ECF1] rounded-8 shadow-md"
-      >
-        <span className="text-2xl text-amber-500">›</span>
-      </button>
+        <AnimatedBackground
+          width={backgroundStyle.width}
+          left={backgroundStyle.left}
+        />
+      </ScrollContainer>
+      <ButtonTabControl type="next" onClick={onClickChangeTab} />
     </div>
   );
 };
