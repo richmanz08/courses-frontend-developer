@@ -1,7 +1,6 @@
 "use client";
 
 import { AdvanceStyle } from "@/src/component/advance-style/AdvanceStyle";
-import { TailwindGuild } from "@/src/component/tailwind/TailwindGuild";
 import { useRouter } from "next/navigation";
 import { BreadCrumb } from "primereact/breadcrumb";
 
@@ -27,7 +26,6 @@ export default function Page() {
   return (
     <div className="bg-gradient-to-br from-blue-50 to-cyan-100 to-indigo-100 min-h-screen">
       <BreadCrumb model={items} home={home} className="bg-inherit" />
-      <TailwindGuild />
       <AdvanceStyle />
     </div>
   );
