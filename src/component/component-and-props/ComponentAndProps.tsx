@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/incompatible-library */
 import { useForm } from "react-hook-form";
 import { Information } from "./children/Information";
 import { InformationForm } from "./children/InformationForm";
@@ -6,7 +7,7 @@ import { EmployeeForm, EmployeeData } from "./ComponentAndProps.interface";
 import { TerminalUI } from "../ui/TerminalUI";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-// import { EmployeeList } from "./children/EmployeeList";
+import { EmployeeList } from "./children/EmployeeList";
 
 export const ComponentAndProps: React.FC = () => {
   const [employees, setEmployees] = useState<EmployeeData[]>([]);
@@ -54,7 +55,7 @@ export const ComponentAndProps: React.FC = () => {
         </div>
       </TerminalUI>
 
-      {/* <EmployeeList employees={employees} /> */}
+      <EmployeeList employees={employees} />
     </div>
   );
 };
