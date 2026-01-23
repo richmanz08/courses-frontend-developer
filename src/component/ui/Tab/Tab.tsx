@@ -39,6 +39,7 @@ export const ResponsiveTabCustom: React.FC<ResponsiveTabCustomProps> = ({
       requestAnimationFrame(() => {
         if (activeTabRef.current && scrollContainerRef.current) {
           const activeButton = activeTabRef.current;
+          // console.log({activeButton});
 
           // Use offsetLeft and offsetWidth for more accurate positioning
           // This gives us the position relative to the offsetParent (the container)
