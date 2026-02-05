@@ -93,14 +93,6 @@ export default function Home() {
       color: "bg-indigo-500",
     },
     {
-      // * ทำความเข้าใจ App Router และ API Routes  (Next Server)
-      title: "Next.js App Router & API Routes",
-      description: "Understand Next.js App Router and how to create API Routes",
-      icon: "🛣️",
-      path: "/next-app-router",
-      color: "bg-green-500",
-    },
-    {
       // * เรียนรู้การใช้ React Query (@tanstack/react-query) เพื่อ Caching และ Revalidation Data
       title: "React Query for Data Caching",
       description:
@@ -109,6 +101,15 @@ export default function Home() {
       path: "/react-query",
       color: "bg-purple-500",
     },
+    {
+      // * ทำความเข้าใจ App Router และ API Routes  (Next Server)
+      title: "Next.js App Router & API Routes",
+      description: "Understand Next.js App Router and how to create API Routes",
+      icon: "🛣️",
+      path: "/next-server",
+      color: "bg-green-500",
+    },
+
     {
       //* แนวคิดการแยก logic ของ code ที่เกี่ยวกับการ business logic ด้วย Custom Hooks
       title: "Custom Hooks for Business Logic",
