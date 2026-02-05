@@ -115,7 +115,7 @@ export default function Home() {
       description:
         "Learn to separate business logic using Custom Hooks in React",
       icon: "🪝",
-      path: "/custom-hooks",
+      path: "/custom-hook",
       color: "bg-teal-500",
     },
   ];
