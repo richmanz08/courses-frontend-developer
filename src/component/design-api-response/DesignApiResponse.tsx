@@ -1,6 +1,77 @@
+import {
+  ApiResponseCommon,
+  PaginationDataCommon,
+} from "@/src/interface/common";
 import { TerminalUI } from "../ui/TerminalUI";
 
+interface Customer {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export function DesignApiResponse() {
+  // 1.example after get data customer by id success ✅
+  const customerData: ApiResponseCommon<Customer | null> = {
+    success: true,
+    message: "Customer retrieved successfully",
+    statusCode: 200,
+    data: {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+    },
+  };
+
+  // 2.example after get data customer by id failed ❌
+  const customerDataFailed: ApiResponseCommon<Customer | null> = {
+    success: false,
+    message: "Customer not found",
+    statusCode: 404,
+    data: null,
+  };
+
+  // 3.example after get data customer list success ✅
+  const customerListDataSuccess: ApiResponseCommon<
+    PaginationDataCommon<Customer[]>
+  > = {
+    success: true,
+    message: "Customer list retrieved successfully",
+    statusCode: 200,
+    data: {
+      list: [
+        {
+          id: 1,
+          name: "John Doe",
+          email: "john@example.com",
+        },
+        {
+          id: 2,
+          name: "Jane Smith",
+          email: "jane@example.com",
+        },
+      ],
+      totalCount: 2,
+      page: 1,
+      pageSize: 10,
+    },
+  };
+
+  // 4.example after get data customer list not found ❌
+  const customerListDataFailed: ApiResponseCommon<
+    PaginationDataCommon<Customer[]>
+  > = {
+    success: false,
+    message: "Customer list not found",
+    statusCode: 404,
+    data: {
+      list: [],
+      totalCount: 0,
+      page: 1,
+      pageSize: 10,
+    },
+  };
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">
