@@ -119,6 +119,15 @@ export default function Home() {
       path: "/custom-hook",
       color: "bg-teal-500",
     },
+    {
+      //* แนวคิดการแยก logic ของ code ที่เกี่ยวกับการ business logic ด้วย Custom Hooks
+      title: "My cars Example",
+      description:
+        "Learn to separate business logic using Custom Hooks in React",
+      icon: "🪝",
+      path: "/my-car-list",
+      color: "bg-teal-500",
+    },
   ];
 
   return (
